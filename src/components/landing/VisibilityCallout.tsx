@@ -1,46 +1,113 @@
-import { Eye, TrendingUp, Zap } from "lucide-react";
+import { Upload, Eye, CheckCircle, PauseCircle } from "lucide-react";
+import { useEffect, useRef, useState } from "react";
+
+const steps = [
+  {
+    icon: Upload,
+    title: "Publica tu inmueble",
+    description: "Sube tus propiedades sin límite. Siempre editables.",
+    color: "bg-emerald-500",
+  },
+  {
+    icon: Eye,
+    title: "Activa la visibilidad",
+    description: "Tu propiedad se muestra y consume leads de tu bolsa gratuita.",
+    color: "bg-emerald-600",
+  },
+  {
+    icon: CheckCircle,
+    title: "Recibe contactos verificados",
+    description: "Leads únicos y verificados llegan directo a ti.",
+    color: "bg-emerald-700",
+  },
+  {
+    icon: PauseCircle,
+    title: "Pausa de 30 días",
+    description: "Cuando se agota la bolsa, pausa temporal. Se recarga automáticamente.",
+    color: "bg-gray-500",
+  },
+];
 
 const VisibilityCallout = () => {
+  const [isVisible, setIsVisible] = useState(false);
+  const sectionRef = useRef<HTMLElement>(null);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsVisible(true);
+        }
+      },
+      { threshold: 0.2 }
+    );
+
+    if (sectionRef.current) {
+      observer.observe(sectionRef.current);
+    }
+
+    return () => observer.disconnect();
+  }, []);
+
   return (
-    <section className="py-10 bg-gradient-to-r from-emerald-50 via-white to-emerald-50">
+    <section id="visibility-callout" ref={sectionRef} className="py-12 bg-white">
       <div className="container mx-auto px-4">
-        <div className="max-w-3xl mx-auto">
-          <div className="relative bg-white rounded-2xl shadow-lg border border-emerald-100 overflow-hidden">
-            {/* Decorative elements */}
-            <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-bl from-emerald-100 to-transparent rounded-bl-full opacity-60" />
-            <div className="absolute bottom-0 left-0 w-24 h-24 bg-gradient-to-tr from-emerald-50 to-transparent rounded-tr-full opacity-60" />
-            
-            <div className="relative p-6 md:p-8 flex flex-col md:flex-row items-center gap-6">
-              {/* Illustration */}
-              <div className="flex-shrink-0">
-                <div className="relative">
-                  <div className="w-20 h-20 md:w-24 md:h-24 bg-gradient-to-br from-emerald-400 to-emerald-600 rounded-2xl flex items-center justify-center shadow-lg">
-                    <Eye className="w-10 h-10 md:w-12 md:h-12 text-white" />
-                  </div>
-                  {/* Animated pulse rings */}
-                  <div className="absolute inset-0 rounded-2xl border-2 border-emerald-400 animate-ping opacity-20" />
-                  <div className="absolute -top-2 -right-2 w-8 h-8 bg-amber-400 rounded-full flex items-center justify-center shadow-md">
-                    <TrendingUp className="w-4 h-4 text-white" />
+        <div className="text-center mb-10">
+          <h2 className="text-2xl md:text-3xl font-bold text-gray-900 mb-3">
+            ¿Cómo funciona la versión <span className="text-emerald-600">gratuita</span>?
+          </h2>
+          <p className="text-gray-600 max-w-2xl mx-auto text-sm">
+            Un modelo transparente que te permite comenzar sin inversión inicial
+          </p>
+        </div>
+
+        <div className="relative max-w-4xl mx-auto">
+          {/* Connecting line */}
+          <div className="absolute left-1/2 top-0 bottom-0 w-0.5 bg-gray-200 -translate-x-1/2 hidden md:block">
+            <div 
+              className={`absolute top-0 left-0 w-full bg-emerald-500 transition-all duration-1000 ease-out ${
+                isVisible ? 'h-full' : 'h-0'
+              }`}
+            />
+          </div>
+
+          {/* Steps */}
+          <div className="space-y-6 md:space-y-0">
+            {steps.map((step, index) => (
+              <div
+                key={index}
+                className={`relative flex items-center gap-4 md:gap-8 ${
+                  index % 2 === 0 ? 'md:flex-row' : 'md:flex-row-reverse'
+                } ${isVisible ? 'animate-fade-in' : 'opacity-0'}`}
+                style={{ animationDelay: `${index * 150}ms` }}
+              >
+                {/* Content */}
+                <div className={`flex-1 ${index % 2 === 0 ? 'md:text-right' : 'md:text-left'}`}>
+                  <div className="bg-white p-4 rounded-xl shadow-md border border-gray-100 hover:shadow-lg transition-shadow duration-300">
+                    <h3 className="text-base font-semibold text-gray-900 mb-1">{step.title}</h3>
+                    <p className="text-gray-600 text-sm">{step.description}</p>
                   </div>
                 </div>
-              </div>
-              
-              {/* Content */}
-              <div className="flex-1 text-center md:text-left">
-                <h3 className="text-xl md:text-2xl font-bold text-gray-900 mb-2">
-                  Si te ven más, <span className="text-emerald-600">te contactan más</span>
-                </h3>
-                <p className="text-gray-600 text-sm md:text-base mb-3">
-                  La visibilidad gratuita es temporal.
-                </p>
-                <div className="inline-flex items-center gap-2 bg-emerald-50 text-emerald-700 px-4 py-2 rounded-full text-sm font-medium">
-                  <Zap className="w-4 h-4" />
-                  Mantén tu anuncio activo y visible con el nivel adecuado
+
+                {/* Icon */}
+                <div className={`relative z-10 flex-shrink-0 w-12 h-12 ${step.color} rounded-full flex items-center justify-center shadow-md`}>
+                  <step.icon className="w-6 h-6 text-white" />
+                  <span className="absolute -top-1 -right-1 w-5 h-5 bg-white rounded-full flex items-center justify-center text-xs font-bold text-gray-700 shadow">
+                    {index + 1}
+                  </span>
                 </div>
+
+                {/* Spacer for alternating layout */}
+                <div className="hidden md:block flex-1" />
               </div>
-            </div>
+            ))}
           </div>
         </div>
+
+        {/* Note */}
+        <p className="text-center text-xs text-gray-500 mt-8 max-w-xl mx-auto">
+          💡 Durante la pausa, tus propiedades siguen editables y listas para reactivarse cuando tu bolsa se recargue.
+        </p>
       </div>
     </section>
   );
