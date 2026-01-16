@@ -1,185 +1,169 @@
-import { useState } from "react";
 import { Button } from "@/components/ui/button";
-import { Check, Crown, Shield, MessageCircle } from "lucide-react";
+import { Check, X, Crown, Shield, Zap, Eye, MessageCircle, TrendingUp } from "lucide-react";
 
 interface PremiumPlansSectionProps {
   cartUrl: string;
   whatsappUrl: string;
 }
 
+const features = [
+  { name: "Publicar inmuebles", free: true, pro: true, proPlus: true },
+  { name: "Editar anuncios en cualquier momento", free: true, pro: true, proPlus: true },
+  { name: "Anuncios siempre visibles", free: false, pro: true, proPlus: true },
+  { name: "Sin pausas de 30 días", free: false, pro: true, proPlus: true },
+  { name: "Leads por correo ilimitados", free: false, pro: true, proPlus: true },
+  { name: "Leads por WhatsApp ilimitados", free: false, pro: true, proPlus: true },
+  { name: "Destacados incluidos", free: false, pro: false, proPlus: true },
+  { name: "Mayor posición en búsquedas", free: false, pro: false, proPlus: true },
+];
+
 const PremiumPlansSection = ({ cartUrl, whatsappUrl }: PremiumPlansSectionProps) => {
-  const [period, setPeriod] = useState<"3" | "6">("6");
-
-  const plans = {
-    "3": {
-      pro: { total: 3600, monthly: 1200, original: null },
-      proPlus: { total: 4080, monthly: 1360, original: 4800, savings: "15%" },
-    },
-    "6": {
-      pro: { total: 6000, monthly: 1000, original: null },
-      proPlus: { total: 6800, monthly: 1133, original: 8000, savings: "15%" },
-    },
-  };
-
-  const currentPlan = plans[period];
-
   return (
-    <section className="py-12 bg-white">
+    <section className="py-12 bg-gradient-to-b from-white to-gray-50">
       <div className="container mx-auto px-4">
         {/* Header */}
-        <div className="flex flex-col md:flex-row items-center justify-center gap-4 mb-8">
-          <p className="text-gray-600 text-center md:text-left text-sm md:text-base">
-            Elige un periodo y un plan para impulsar<br className="hidden md:block" /> tus anuncios y obtener la mayor visibilidad
+        <div className="text-center mb-10">
+          <h2 className="text-2xl md:text-3xl font-bold text-gray-900 mb-3">
+            Compara y elige tu <span className="text-emerald-600">nivel de visibilidad</span>
+          </h2>
+          <p className="text-gray-600 max-w-xl mx-auto text-sm">
+            Desde publicación gratuita hasta máxima exposición premium
           </p>
-          
-          {/* Period Toggle */}
-          <div className="flex bg-gray-100 rounded-full p-1">
-            <button
-              onClick={() => setPeriod("3")}
-              className={`px-4 py-2 rounded-full text-sm font-medium transition-all ${
-                period === "3"
-                  ? "bg-emerald-700 text-white"
-                  : "text-gray-600 hover:text-gray-900"
-              }`}
-            >
-              3 meses
-            </button>
-            <button
-              onClick={() => setPeriod("6")}
-              className={`px-4 py-2 rounded-full text-sm font-medium transition-all ${
-                period === "6"
-                  ? "bg-emerald-700 text-white"
-                  : "text-gray-600 hover:text-gray-900"
-              }`}
-            >
-              6 meses
-            </button>
-          </div>
         </div>
 
-        {/* Plans Grid */}
-        <div className="grid md:grid-cols-2 gap-6 max-w-4xl mx-auto mb-6">
+        {/* Visual Cards */}
+        <div className="grid md:grid-cols-3 gap-4 max-w-4xl mx-auto mb-10">
+          {/* Gratis */}
+          <div className="bg-white border border-gray-200 rounded-xl p-5 text-center relative">
+            <div className="w-12 h-12 bg-gray-100 rounded-full flex items-center justify-center mx-auto mb-3">
+              <Eye className="w-6 h-6 text-gray-500" />
+            </div>
+            <h3 className="font-bold text-gray-900 mb-1">Gratis</h3>
+            <p className="text-xs text-gray-500 mb-4">Publicación básica</p>
+            
+            {/* Visual indicator */}
+            <div className="h-2 bg-gray-100 rounded-full overflow-hidden mb-3">
+              <div className="h-full bg-gray-400 rounded-full" style={{ width: '25%' }} />
+            </div>
+            <p className="text-xs text-gray-400">Visibilidad limitada</p>
+          </div>
+
           {/* Plan Pro */}
-          <div className="bg-white border border-gray-200 rounded-2xl p-6 shadow-sm">
-            <div className="flex items-center gap-3 mb-5">
-              <div className="w-10 h-10 bg-gray-100 rounded-lg flex items-center justify-center">
-                <Crown className="w-5 h-5 text-gray-500" />
-              </div>
-              <h3 className="text-lg font-semibold text-gray-900">Plan Pro</h3>
+          <div className="bg-white border-2 border-emerald-200 rounded-xl p-5 text-center relative shadow-sm">
+            <div className="w-12 h-12 bg-emerald-100 rounded-full flex items-center justify-center mx-auto mb-3">
+              <Crown className="w-6 h-6 text-emerald-600" />
             </div>
-
-            <div className="mb-4">
-              <div className="flex items-baseline gap-2">
-                <span className="text-4xl font-bold text-gray-900">
-                  ${currentPlan.pro.total.toLocaleString()}
-                </span>
-                <span className="text-gray-500 text-sm">MXN</span>
-              </div>
-              <p className="text-gray-500 text-sm">
-                ${currentPlan.pro.monthly.toLocaleString()} MXN por mes
-              </p>
+            <h3 className="font-bold text-gray-900 mb-1">Plan Pro</h3>
+            <p className="text-xs text-gray-500 mb-4">Visibilidad continua</p>
+            
+            {/* Visual indicator */}
+            <div className="h-2 bg-gray-100 rounded-full overflow-hidden mb-3">
+              <div className="h-full bg-emerald-500 rounded-full" style={{ width: '65%' }} />
             </div>
-
-            <Button
-              asChild
-              variant="outline"
-              className="w-full mb-5 border-gray-300 hover:bg-gray-50"
-            >
-              <a href={cartUrl} target="_blank" rel="noopener noreferrer">
-                Activar este plan
-              </a>
-            </Button>
-
-            <ul className="space-y-2.5">
-              <li className="flex items-start gap-2 text-sm text-gray-600">
-                <Check className="w-4 h-4 text-emerald-600 mt-0.5 flex-shrink-0" />
-                Anuncios simples ilimitados
-              </li>
-              <li className="flex items-start gap-2 text-sm text-gray-600">
-                <Check className="w-4 h-4 text-emerald-600 mt-0.5 flex-shrink-0" />
-                Anuncios siempre visibles en el portal
-              </li>
-              <li className="flex items-start gap-2 text-sm text-gray-600">
-                <Check className="w-4 h-4 text-emerald-600 mt-0.5 flex-shrink-0" />
-                Leads por correo y WhatsApp ilimitados
-              </li>
-            </ul>
+            <p className="text-xs text-emerald-600 font-medium">3x más alcance</p>
           </div>
 
           {/* Plan Pro + Destacados */}
-          <div className="bg-emerald-800 border border-emerald-700 rounded-2xl p-6 shadow-lg relative overflow-hidden">
-            <div className="flex items-center justify-between mb-5">
-              <div className="flex items-center gap-3">
-                <div className="w-10 h-10 bg-emerald-700/50 rounded-lg flex items-center justify-center">
-                  <Shield className="w-5 h-5 text-emerald-300" />
-                </div>
-                <h3 className="text-lg font-semibold text-white">Plan Pro + Destacados</h3>
-              </div>
-              <span className="bg-emerald-400/20 text-emerald-300 text-xs font-medium px-2.5 py-1 rounded-full border border-emerald-400/30">
-                Ahorras {currentPlan.proPlus.savings}
-              </span>
+          <div className="bg-emerald-800 border-2 border-emerald-700 rounded-xl p-5 text-center relative shadow-lg">
+            <span className="absolute -top-2 left-1/2 -translate-x-1/2 bg-amber-400 text-amber-900 text-[10px] font-bold px-2 py-0.5 rounded-full">
+              POPULAR
+            </span>
+            <div className="w-12 h-12 bg-emerald-700/50 rounded-full flex items-center justify-center mx-auto mb-3">
+              <Shield className="w-6 h-6 text-emerald-300" />
             </div>
-
-            <div className="mb-4">
-              <div className="flex items-baseline gap-2">
-                <span className="text-4xl font-bold text-white">
-                  ${currentPlan.proPlus.total.toLocaleString()}
-                </span>
-                <span className="text-emerald-200 text-sm">MXN</span>
-                {currentPlan.proPlus.original && (
-                  <span className="text-emerald-400/60 text-sm line-through ml-2">
-                    ${currentPlan.proPlus.original.toLocaleString()}
-                  </span>
-                )}
-              </div>
-              <p className="text-emerald-200 text-sm">
-                ${currentPlan.proPlus.monthly.toLocaleString()} MXN por mes
-              </p>
+            <h3 className="font-bold text-white mb-1">Pro + Destacados</h3>
+            <p className="text-xs text-emerald-200 mb-4">Máxima visibilidad</p>
+            
+            {/* Visual indicator */}
+            <div className="h-2 bg-emerald-900 rounded-full overflow-hidden mb-3">
+              <div className="h-full bg-emerald-400 rounded-full" style={{ width: '100%' }} />
             </div>
-
-            <Button
-              asChild
-              className="w-full mb-5 bg-white text-emerald-800 hover:bg-gray-100"
-            >
-              <a href={cartUrl} target="_blank" rel="noopener noreferrer">
-                Activar este plan
-              </a>
-            </Button>
-
-            <ul className="space-y-2.5">
-              <li className="flex items-start gap-2 text-sm text-emerald-100">
-                <Check className="w-4 h-4 text-emerald-400 mt-0.5 flex-shrink-0" />
-                TODOS LOS BENEFICIOS DEL PLAN PRO
-              </li>
-              <li className="flex items-start gap-2 text-sm text-emerald-100">
-                <Check className="w-4 h-4 text-emerald-400 mt-0.5 flex-shrink-0" />
-                10 Destacados: sube tus anuncios de posición
-              </li>
-              <li className="flex items-start gap-2 text-sm text-emerald-100">
-                <Check className="w-4 h-4 text-emerald-400 mt-0.5 flex-shrink-0" />
-                Mayor visibilidad frente a anuncios simples
-              </li>
-            </ul>
+            <p className="text-xs text-emerald-300 font-medium">5x más alcance</p>
           </div>
         </div>
 
-        {/* Footnote */}
-        <p className="text-center text-gray-400 text-xs mb-6">
-          * Precio base, calculado a partir del volumen promedio de contactos al mes
-        </p>
+        {/* Comparison Table */}
+        <div className="bg-white rounded-xl border border-gray-200 overflow-hidden max-w-4xl mx-auto mb-8">
+          <div className="grid grid-cols-4 bg-gray-50 border-b border-gray-200">
+            <div className="p-3 text-xs font-medium text-gray-500">Característica</div>
+            <div className="p-3 text-xs font-medium text-gray-500 text-center">Gratis</div>
+            <div className="p-3 text-xs font-medium text-emerald-600 text-center">Pro</div>
+            <div className="p-3 text-xs font-medium text-emerald-700 text-center bg-emerald-50">Pro + Destacados</div>
+          </div>
+          
+          {features.map((feature, index) => (
+            <div 
+              key={index} 
+              className={`grid grid-cols-4 ${index !== features.length - 1 ? 'border-b border-gray-100' : ''}`}
+            >
+              <div className="p-3 text-xs text-gray-700">{feature.name}</div>
+              <div className="p-3 flex justify-center">
+                {feature.free ? (
+                  <Check className="w-4 h-4 text-gray-400" />
+                ) : (
+                  <X className="w-4 h-4 text-gray-300" />
+                )}
+              </div>
+              <div className="p-3 flex justify-center">
+                {feature.pro ? (
+                  <Check className="w-4 h-4 text-emerald-500" />
+                ) : (
+                  <X className="w-4 h-4 text-gray-300" />
+                )}
+              </div>
+              <div className="p-3 flex justify-center bg-emerald-50/50">
+                {feature.proPlus ? (
+                  <Check className="w-4 h-4 text-emerald-600" />
+                ) : (
+                  <X className="w-4 h-4 text-gray-300" />
+                )}
+              </div>
+            </div>
+          ))}
+        </div>
 
-        {/* CTA Bar */}
-        <div className="bg-emerald-800 rounded-2xl p-4 flex flex-col sm:flex-row items-center justify-between gap-4 max-w-4xl mx-auto">
-          <p className="text-emerald-100 font-medium text-center sm:text-left">
-            Contáctanos para un plan personalizado
-          </p>
+        {/* Visual Benefits Row */}
+        <div className="flex flex-wrap justify-center gap-6 mb-8 max-w-3xl mx-auto">
+          <div className="flex items-center gap-2">
+            <div className="w-8 h-8 bg-emerald-100 rounded-full flex items-center justify-center">
+              <TrendingUp className="w-4 h-4 text-emerald-600" />
+            </div>
+            <span className="text-sm text-gray-600">Más visitas</span>
+          </div>
+          <div className="flex items-center gap-2">
+            <div className="w-8 h-8 bg-emerald-100 rounded-full flex items-center justify-center">
+              <Zap className="w-4 h-4 text-emerald-600" />
+            </div>
+            <span className="text-sm text-gray-600">Leads más rápido</span>
+          </div>
+          <div className="flex items-center gap-2">
+            <div className="w-8 h-8 bg-emerald-100 rounded-full flex items-center justify-center">
+              <MessageCircle className="w-4 h-4 text-emerald-600" />
+            </div>
+            <span className="text-sm text-gray-600">WhatsApp ilimitado</span>
+          </div>
+        </div>
+
+        {/* CTA */}
+        <div className="flex flex-col sm:flex-row gap-3 justify-center">
           <Button
             asChild
-            className="bg-emerald-500 hover:bg-emerald-400 text-white whitespace-nowrap"
+            size="lg"
+            className="bg-emerald-600 hover:bg-emerald-500 text-white"
+          >
+            <a href={cartUrl} target="_blank" rel="noopener noreferrer">
+              Ver planes y precios
+            </a>
+          </Button>
+          <Button
+            asChild
+            size="lg"
+            variant="outline"
+            className="border-emerald-200 text-emerald-700 hover:bg-emerald-50"
           >
             <a href={whatsappUrl} target="_blank" rel="noopener noreferrer">
-              Cotizar por WhatsApp
-              <MessageCircle className="w-4 h-4 ml-2" />
+              <MessageCircle className="w-4 h-4 mr-2" />
+              Asesoría personalizada
             </a>
           </Button>
         </div>
