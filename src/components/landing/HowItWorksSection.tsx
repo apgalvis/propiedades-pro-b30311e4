@@ -1,4 +1,4 @@
-import { Upload, Eye, CheckCircle, PauseCircle } from "lucide-react";
+import { Upload, Eye, CheckCircle, PauseCircle, TrendingUp } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 
 const steps = [
@@ -25,6 +25,12 @@ const steps = [
     title: "Pausa de 30 días",
     description: "Cuando se agota la bolsa, pausa temporal. Se recarga automáticamente.",
     color: "bg-gray-500",
+  },
+  {
+    icon: TrendingUp,
+    title: "Escala si quieres",
+    description: "Con el Plan Pro estarás siempre visible, sin pausas.",
+    color: "bg-emerald-500",
   },
 ];
 
