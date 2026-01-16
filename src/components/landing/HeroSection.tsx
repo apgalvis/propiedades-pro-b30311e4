@@ -1,66 +1,70 @@
-import { Eye, TrendingUp, Zap, ArrowDown } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { MessageCircle } from "lucide-react";
 
-const HeroSection = () => {
-  const scrollToNext = () => {
-    const nextSection = document.getElementById("visibility-callout");
-    nextSection?.scrollIntoView({ behavior: "smooth" });
-  };
+interface HeroSectionProps {
+  cartUrl: string;
+  whatsappUrl: string;
+}
 
+const HeroSection = ({ cartUrl, whatsappUrl }: HeroSectionProps) => {
   return (
-    <section className="relative min-h-[70vh] flex items-center justify-center bg-gradient-to-br from-emerald-900 via-emerald-800 to-emerald-900 overflow-hidden">
-      {/* Background pattern */}
-      <div className="absolute inset-0 opacity-10">
-        <div className="absolute inset-0" style={{ 
-          backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.4'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")` 
-        }} />
-      </div>
+    <section className="relative min-h-[80vh] flex items-center justify-center overflow-hidden pt-14">
+      {/* Background with parallax effect */}
+      <div 
+        className="absolute inset-0 bg-cover bg-center bg-fixed"
+        style={{
+          backgroundImage: `linear-gradient(to bottom, rgba(6, 78, 59, 0.85), rgba(6, 78, 59, 0.7)), url('https://images.unsplash.com/photo-1486325212027-8081e485255e?w=1920&q=80')`
+        }}
+      />
 
-      {/* Decorative elements */}
-      <div className="absolute top-20 left-10 w-64 h-64 bg-emerald-400/20 rounded-full blur-3xl" />
-      <div className="absolute bottom-20 right-10 w-80 h-80 bg-amber-400/10 rounded-full blur-3xl" />
+      <div className="relative z-10 container mx-auto px-4 text-center">
+        {/* Main titles */}
+        <h1 className="text-3xl md:text-5xl lg:text-6xl font-bold text-white mb-4">
+          <span className="block animate-fade-in">
+            Publica <span className="text-emerald-300 relative inline-block">
+              gratis
+              <span className="absolute bottom-0 left-0 w-full h-1 bg-emerald-400 animate-draw-line" />
+            </span> tus inmuebles
+          </span>
+          <span className="block animate-fade-in" style={{ animationDelay: '150ms' }}>
+            Recibe contactos <span className="text-amber-300">verificados</span> y <span className="text-amber-300">únicos</span>
+          </span>
+        </h1>
 
-      <div className="container mx-auto px-4 py-16 relative z-10">
-        <div className="max-w-3xl mx-auto text-center">
-          {/* Icon */}
-          <div className="mb-8 inline-flex">
-            <div className="relative">
-              <div className="w-20 h-20 md:w-24 md:h-24 bg-gradient-to-br from-emerald-400 to-emerald-600 rounded-2xl flex items-center justify-center shadow-2xl shadow-emerald-500/30">
-                <Eye className="w-10 h-10 md:w-12 md:h-12 text-white" />
-              </div>
-              <div className="absolute -top-2 -right-2 w-8 h-8 bg-amber-400 rounded-full flex items-center justify-center shadow-lg animate-pulse">
-                <TrendingUp className="w-4 h-4 text-amber-900" />
-              </div>
-            </div>
-          </div>
+        {/* Subtitle */}
+        <p className="text-base md:text-lg text-emerald-100/80 max-w-2xl mx-auto mb-6 animate-fade-in" style={{ animationDelay: '300ms' }}>
+          Publica sin límite, activa visibilidad con tu bolsa de leads gratuita y escala a premium cuando quieras más exposición.
+        </p>
 
-          {/* Main headline */}
-          <h1 className="text-3xl md:text-5xl lg:text-6xl font-bold text-white mb-6 leading-tight">
-            Si te ven más,{" "}
-            <span className="bg-gradient-to-r from-amber-300 to-amber-500 bg-clip-text text-transparent">
-              te contactan más
-            </span>
-          </h1>
+        {/* CTAs */}
+        <div className="flex flex-col sm:flex-row gap-3 justify-center animate-fade-in" style={{ animationDelay: '450ms' }}>
+          <Button 
+            asChild
+            size="lg" 
+            className="bg-white hover:bg-gray-100 text-emerald-700 font-semibold px-6 py-5 shadow-lg hover:shadow-xl transition-all duration-300"
+          >
+            <a href={cartUrl} target="_blank" rel="noopener noreferrer">
+              Ver planes y precios
+              <span className="ml-2">→</span>
+            </a>
+          </Button>
+          <Button 
+            asChild
+            size="lg" 
+            variant="outline"
+            className="border-emerald-400/50 bg-emerald-600/30 text-white hover:bg-emerald-500/40 px-6 py-5"
+          >
+            <a href={whatsappUrl} target="_blank" rel="noopener noreferrer">
+              <MessageCircle className="w-4 h-4 mr-2" />
+              Asesoría personalizada
+            </a>
+          </Button>
+        </div>
 
-          {/* Subheadline */}
-          <p className="text-lg md:text-xl text-emerald-100/90 mb-4 max-w-2xl mx-auto">
-            La visibilidad gratuita es temporal.
-          </p>
-
-          {/* Value proposition */}
-          <div className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm text-white px-5 py-3 rounded-full text-sm md:text-base font-medium border border-white/20 mb-10">
-            <Zap className="w-5 h-5 text-amber-400" />
-            Mantén tu anuncio activo y visible con el nivel adecuado
-          </div>
-
-          {/* Scroll indicator */}
-          <div className="mt-8">
-            <button 
-              onClick={scrollToNext}
-              className="inline-flex flex-col items-center gap-2 text-emerald-200/60 hover:text-emerald-100 transition-colors group"
-            >
-              <span className="text-xs uppercase tracking-wider">Descubre cómo</span>
-              <ArrowDown className="w-5 h-5 animate-bounce" />
-            </button>
+        {/* Scroll indicator */}
+        <div className="absolute bottom-6 left-1/2 -translate-x-1/2">
+          <div className="w-5 h-8 border-2 border-white/30 rounded-full flex justify-center pt-1.5">
+            <div className="w-1 h-2 bg-white/50 rounded-full animate-scroll-indicator" />
           </div>
         </div>
       </div>

@@ -1,40 +1,32 @@
+import StickyBanner from "@/components/landing/StickyBanner";
 import HeroSection from "@/components/landing/HeroSection";
-import VisibilityCallout from "@/components/landing/VisibilityCallout";
+import HowItWorksSection from "@/components/landing/HowItWorksSection";
 import VisibilityLevels from "@/components/landing/VisibilityLevels";
+import VisibilityCallout from "@/components/landing/VisibilityCallout";
 import PremiumPlansSection from "@/components/landing/PremiumPlansSection";
 import PremiumBenefits from "@/components/landing/PremiumBenefits";
 import FAQSection from "@/components/landing/FAQSection";
 import GlossarySection from "@/components/landing/GlossarySection";
+import FinalCTA from "@/components/landing/FinalCTA";
 import Footer from "@/components/landing/Footer";
 
 // Configuración de URLs externas
-const CART_URL = "https://propiedades.com/carrito";
-const WHATSAPP_URL = "https://wa.me/5215512345678?text=Hola,%20quiero%20cotizar%20un%20plan%20Premium";
+const CART_URL = "https://propiedades.com/carrito"; // Cambiar por la URL real del carrito
+const WHATSAPP_URL = "https://wa.me/5215512345678?text=Hola,%20quiero%20cotizar%20un%20plan%20Premium"; // Cambiar por el número real
 
 const Index = () => {
   return (
     <div className="min-h-screen bg-white">
-      {/* 1. Hero: Si te ven más, te contactan más */}
-      <HeroSection />
-      
-      {/* 2. ¿Cómo funciona la versión gratuita? */}
-      <VisibilityCallout />
-      
-      {/* 3. Niveles de visualización */}
+      <StickyBanner cartUrl={CART_URL} />
+      <HeroSection cartUrl={CART_URL} whatsappUrl={WHATSAPP_URL} />
+      <HowItWorksSection />
       <VisibilityLevels />
-      
-      {/* 4. Compara y elige tu nivel de visibilidad */}
+      <VisibilityCallout />
       <PremiumPlansSection cartUrl={CART_URL} whatsappUrl={WHATSAPP_URL} />
-      
-      {/* 5. Desbloquea tu potencial */}
       <PremiumBenefits cartUrl={CART_URL} whatsappUrl={WHATSAPP_URL} />
-      
-      {/* 6. Preguntas frecuentes */}
       <FAQSection />
-      
-      {/* 7. Glosario de términos */}
       <GlossarySection />
-      
+      <FinalCTA cartUrl={CART_URL} whatsappUrl={WHATSAPP_URL} />
       <Footer />
     </div>
   );

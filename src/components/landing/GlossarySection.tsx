@@ -27,7 +27,7 @@ const glossaryTerms = [
 
 const GlossarySection = () => {
   return (
-    <section className="py-10 bg-white">
+    <section className="py-10 bg-gray-50">
       <div className="container mx-auto px-4">
         <div className="text-center mb-6">
           <h2 className="text-xl md:text-2xl font-bold text-gray-900 mb-2">
