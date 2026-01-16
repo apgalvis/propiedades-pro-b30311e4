@@ -33,7 +33,7 @@ const faqCategories = [
   },
   {
     id: "bolsa",
-    label: "Bolsa de leads",
+    label: "Plan gratuito",
     icon: Package,
     faqs: [
       {
@@ -66,10 +66,6 @@ const faqCategories = [
       {
         question: "¿Qué son los Destacados?",
         answer: "Los Destacados son posiciones premium que colocan tus anuncios por encima de los simples en los resultados de búsqueda. Incluyen un badge distintivo que genera mayor confianza y más clics.",
-      },
-      {
-        question: "¿Puedo cambiar de plan en cualquier momento?",
-        answer: "Sí, puedes actualizar o cambiar tu plan cuando quieras. El cambio se aplica inmediatamente y se prorratea el costo según los días restantes de tu ciclo actual.",
       },
       {
         question: "¿Qué diferencia hay entre Destacado y Prime?",
