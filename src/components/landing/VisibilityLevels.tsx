@@ -91,7 +91,7 @@ const VisibilityLevels = () => {
         </div>
 
         {/* Main Illustration */}
-        <div className="relative max-w-4xl mx-auto">
+        <div className="relative max-w-4xl mx-auto pt-28 sm:pt-32 md:pt-36">
           
           {/* Exposure indicator */}
           <div 
@@ -168,86 +168,76 @@ const VisibilityLevels = () => {
             ))}
           </div>
 
-          {/* Plan Coverage Brackets */}
+          {/* Plan Coverage Brackets - Above columns */}
           <div 
-            className={`relative mt-8 md:mt-12 transition-all duration-700 delay-500 ${
-              isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+            className={`absolute -top-2 left-0 right-0 transition-all duration-700 delay-500 ${
+              isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-8'
             }`}
           >
-            {/* Grid container for brackets */}
-            <div className="grid grid-cols-4 gap-4 sm:gap-6 md:gap-10 max-w-[280px] sm:max-w-[360px] md:max-w-[480px] lg:max-w-[560px] mx-auto">
+            {/* All brackets stacked from top */}
+            <div className="flex flex-col gap-1 max-w-[280px] sm:max-w-[360px] md:max-w-[480px] lg:max-w-[560px] mx-auto">
               
-              {/* Plan Gratis - Pausado + Anuncio Simple (columns 1-2) */}
-              <div className="col-span-2 relative">
-                <div className="h-1 bg-emerald-400 rounded-full" />
-                <div className="absolute left-0 top-0 w-1 h-3 bg-emerald-400 rounded-b-full" />
-                <div className="absolute right-0 top-0 w-1 h-3 bg-emerald-400 rounded-b-full" />
-                <div className="text-center mt-4">
-                  <span className="inline-block bg-emerald-500 text-white text-[9px] sm:text-[10px] md:text-xs font-semibold px-2 py-1 rounded-full whitespace-nowrap">
-                    Plan Gratis
+              {/* Prime - Compra adicional (column 4 only) */}
+              <div className="grid grid-cols-4 gap-4 sm:gap-6 md:gap-10">
+                <div className="col-span-3" />
+                <div className="col-span-1 relative flex flex-col items-center">
+                  <span className="inline-flex items-center gap-1 bg-gradient-to-r from-violet-500 to-purple-600 text-white text-[8px] sm:text-[9px] md:text-[10px] font-semibold px-1.5 py-0.5 rounded-full whitespace-nowrap mb-1">
+                    <Sparkles className="w-2 h-2 md:w-2.5 md:h-2.5" />
+                    Adicional
                   </span>
+                  <div className="w-full relative">
+                    <div className="absolute left-0 bottom-0 w-1 h-2 bg-violet-500 rounded-t-full" />
+                    <div className="absolute right-0 bottom-0 w-1 h-2 bg-purple-600 rounded-t-full" />
+                    <div className="h-1 bg-gradient-to-r from-violet-500 to-purple-600 rounded-full" />
+                  </div>
                 </div>
               </div>
-              
-              {/* Spacer for alignment */}
-              <div className="col-span-2" />
-            </div>
 
-            {/* Plan Pro - Solo Anuncio Simple (column 2 only) */}
-            <div className="grid grid-cols-4 gap-4 sm:gap-6 md:gap-10 max-w-[280px] sm:max-w-[360px] md:max-w-[480px] lg:max-w-[560px] mx-auto mt-4">
-              {/* Spacer for Pausado */}
-              <div className="col-span-1" />
-              
-              <div className="col-span-1 relative">
-                <div className="h-1 bg-blue-500 rounded-full" />
-                <div className="absolute left-0 top-0 w-1 h-3 bg-blue-500 rounded-b-full" />
-                <div className="absolute right-0 top-0 w-1 h-3 bg-blue-500 rounded-b-full" />
-                <div className="text-center mt-4">
-                  <span className="inline-block bg-blue-500 text-white text-[9px] sm:text-[10px] md:text-xs font-semibold px-2 py-1 rounded-full whitespace-nowrap">
+              {/* Plan Pro + Destacados (columns 2-3) */}
+              <div className="grid grid-cols-4 gap-4 sm:gap-6 md:gap-10">
+                <div className="col-span-1" />
+                <div className="col-span-2 relative flex flex-col items-center">
+                  <span className="inline-block bg-gradient-to-r from-amber-500 to-orange-500 text-white text-[8px] sm:text-[9px] md:text-[10px] font-semibold px-1.5 py-0.5 rounded-full whitespace-nowrap mb-1">
+                    Pro + Destacados
+                  </span>
+                  <div className="w-full relative">
+                    <div className="absolute left-0 bottom-0 w-1 h-2 bg-amber-500 rounded-t-full" />
+                    <div className="absolute right-0 bottom-0 w-1 h-2 bg-orange-500 rounded-t-full" />
+                    <div className="h-1 bg-gradient-to-r from-amber-500 to-orange-500 rounded-full" />
+                  </div>
+                </div>
+                <div className="col-span-1" />
+              </div>
+
+              {/* Plan Pro (column 2 only) */}
+              <div className="grid grid-cols-4 gap-4 sm:gap-6 md:gap-10">
+                <div className="col-span-1" />
+                <div className="col-span-1 relative flex flex-col items-center">
+                  <span className="inline-block bg-blue-500 text-white text-[8px] sm:text-[9px] md:text-[10px] font-semibold px-1.5 py-0.5 rounded-full whitespace-nowrap mb-1">
                     Plan Pro
                   </span>
+                  <div className="w-full relative">
+                    <div className="absolute left-0 bottom-0 w-1 h-2 bg-blue-500 rounded-t-full" />
+                    <div className="absolute right-0 bottom-0 w-1 h-2 bg-blue-500 rounded-t-full" />
+                    <div className="h-1 bg-blue-500 rounded-full" />
+                  </div>
                 </div>
+                <div className="col-span-2" />
               </div>
-              
-              {/* Spacer */}
-              <div className="col-span-2" />
-            </div>
 
-            {/* Plan Pro + Destacados - Anuncio Simple + Destacado (columns 2-3) */}
-            <div className="grid grid-cols-4 gap-4 sm:gap-6 md:gap-10 max-w-[280px] sm:max-w-[360px] md:max-w-[480px] lg:max-w-[560px] mx-auto mt-4">
-              {/* Spacer for Pausado */}
-              <div className="col-span-1" />
-              
-              <div className="col-span-2 relative">
-                <div className="h-1 bg-gradient-to-r from-amber-500 to-orange-500 rounded-full" />
-                <div className="absolute left-0 top-0 w-1 h-3 bg-amber-500 rounded-b-full" />
-                <div className="absolute right-0 top-0 w-1 h-3 bg-orange-500 rounded-b-full" />
-                <div className="text-center mt-4">
-                  <span className="inline-block bg-gradient-to-r from-amber-500 to-orange-500 text-white text-[9px] sm:text-[10px] md:text-xs font-semibold px-2 py-1 rounded-full whitespace-nowrap">
-                    Plan Pro + Destacados
+              {/* Plan Gratis (columns 1-2) */}
+              <div className="grid grid-cols-4 gap-4 sm:gap-6 md:gap-10">
+                <div className="col-span-2 relative flex flex-col items-center">
+                  <span className="inline-block bg-emerald-500 text-white text-[8px] sm:text-[9px] md:text-[10px] font-semibold px-1.5 py-0.5 rounded-full whitespace-nowrap mb-1">
+                    Plan Gratis
                   </span>
+                  <div className="w-full relative">
+                    <div className="absolute left-0 bottom-0 w-1 h-2 bg-emerald-400 rounded-t-full" />
+                    <div className="absolute right-0 bottom-0 w-1 h-2 bg-emerald-400 rounded-t-full" />
+                    <div className="h-1 bg-emerald-400 rounded-full" />
+                  </div>
                 </div>
-              </div>
-              
-              {/* Spacer */}
-              <div className="col-span-1" />
-            </div>
-
-            {/* Prime - Compra adicional (column 4 only) */}
-            <div className="grid grid-cols-4 gap-4 sm:gap-6 md:gap-10 max-w-[280px] sm:max-w-[360px] md:max-w-[480px] lg:max-w-[560px] mx-auto mt-4">
-              {/* Spacers */}
-              <div className="col-span-3" />
-              
-              <div className="col-span-1 relative">
-                <div className="h-1 bg-gradient-to-r from-violet-500 to-purple-600 rounded-full" />
-                <div className="absolute left-0 top-0 w-1 h-3 bg-violet-500 rounded-b-full" />
-                <div className="absolute right-0 top-0 w-1 h-3 bg-purple-600 rounded-b-full" />
-                <div className="text-center mt-4">
-                  <span className="inline-flex items-center gap-1 bg-gradient-to-r from-violet-500 to-purple-600 text-white text-[9px] sm:text-[10px] md:text-xs font-semibold px-2 py-1 rounded-full whitespace-nowrap">
-                    <Sparkles className="w-2.5 h-2.5 md:w-3 md:h-3" />
-                    Compra adicional
-                  </span>
-                </div>
+                <div className="col-span-2" />
               </div>
             </div>
           </div>
