@@ -1,76 +1,199 @@
-import { Button } from "@/components/ui/button";
-import { ShoppingCart, CheckCircle } from "lucide-react";
-import { MessageCircle as WhatsAppIcon } from "lucide-react";
+import styled from 'styled-components';
+import { ShoppingCart, CheckCircle, MessageCircle } from "lucide-react";
 
 interface FinalCTAProps {
   cartUrl: string;
   whatsappUrl: string;
 }
 
+const SectionWrapper = styled.section`
+  padding: 3.5rem 0;
+  position: relative;
+  overflow: hidden;
+`;
+
+const Background = styled.div`
+  position: absolute;
+  inset: 0;
+  background-size: cover;
+  background-position: center;
+  background-image: linear-gradient(to bottom, rgba(6, 78, 59, 0.92), rgba(6, 78, 59, 0.95)), url('https://images.unsplash.com/photo-1560518883-ce09059eeffa?w=1920&q=80');
+`;
+
+const Container = styled.div`
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 1rem;
+  position: relative;
+  z-index: 10;
+`;
+
+const Content = styled.div`
+  max-width: 48rem;
+  margin: 0 auto;
+  text-align: center;
+`;
+
+const Title = styled.h2`
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: white;
+  margin-bottom: 1rem;
+  animation: fadeIn 0.5s ease-out forwards;
+  
+  @media (min-width: 768px) {
+    font-size: 2.25rem;
+  }
+  
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+`;
+
+const Highlight = styled.span`
+  color: #fcd34d;
+`;
+
+const Subtitle = styled.p`
+  color: rgba(209, 250, 229, 0.8);
+  font-size: 1rem;
+  margin-bottom: 1.5rem;
+  animation: fadeIn 0.5s ease-out forwards;
+  animation-delay: 100ms;
+  opacity: 0;
+  
+  @keyframes fadeIn {
+    to {
+      opacity: 1;
+    }
+  }
+`;
+
+const CTAWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  justify-content: center;
+  margin-bottom: 1.5rem;
+  animation: fadeIn 0.5s ease-out forwards;
+  animation-delay: 200ms;
+  opacity: 0;
+  
+  @media (min-width: 640px) {
+    flex-direction: row;
+  }
+`;
+
+const GradientButton = styled.a`
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.875rem 1.5rem;
+  background: linear-gradient(to right, #fbbf24, #f59e0b);
+  color: #064e3b;
+  font-weight: 700;
+  border-radius: 0.5rem;
+  text-decoration: none;
+  box-shadow: 0 4px 15px rgba(245, 158, 11, 0.3);
+  transition: all 0.3s ease;
+
+  &:hover {
+    background: linear-gradient(to right, #f59e0b, #d97706);
+    box-shadow: 0 4px 20px rgba(245, 158, 11, 0.5);
+  }
+`;
+
+const OutlineButton = styled.a`
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.875rem 1.5rem;
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  color: white;
+  font-weight: 500;
+  border-radius: 0.5rem;
+  text-decoration: none;
+  transition: background 0.2s ease;
+
+  &:hover {
+    background: rgba(255, 255, 255, 0.1);
+  }
+`;
+
+const TrustSignals = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  color: rgba(209, 250, 229, 0.7);
+  font-size: 0.75rem;
+  animation: fadeIn 0.5s ease-out forwards;
+  animation-delay: 300ms;
+  opacity: 0;
+  
+  @media (min-width: 640px) {
+    flex-direction: row;
+  }
+`;
+
+const TrustItem = styled.span`
+  display: flex;
+  align-items: center;
+  gap: 0.375rem;
+`;
+
 const FinalCTA = ({ cartUrl, whatsappUrl }: FinalCTAProps) => {
   return (
-    <section className="py-14 relative overflow-hidden">
-      {/* Background */}
-      <div 
-        className="absolute inset-0 bg-cover bg-center"
-        style={{
-          backgroundImage: `linear-gradient(to bottom, rgba(6, 78, 59, 0.92), rgba(6, 78, 59, 0.95)), url('https://images.unsplash.com/photo-1560518883-ce09059eeffa?w=1920&q=80')`
-        }}
-      />
-
-      <div className="container mx-auto px-4 relative z-10">
-        <div className="max-w-3xl mx-auto text-center">
-          <h2 className="text-2xl md:text-4xl font-bold text-white mb-4 animate-fade-in">
-            Da el salto a{" "}
-            <span className="text-amber-300">visibilidad continua</span>
-          </h2>
-          <p className="text-emerald-100/80 text-base mb-6 animate-fade-in" style={{ animationDelay: '100ms' }}>
+    <SectionWrapper>
+      <Background />
+      <Container>
+        <Content>
+          <Title>
+            Da el salto a <Highlight>visibilidad continua</Highlight>
+          </Title>
+          <Subtitle>
             Únete a miles de agentes que ya multiplicaron sus resultados con Premium
-          </p>
+          </Subtitle>
 
-          {/* CTAs */}
-          <div className="flex flex-col sm:flex-row gap-3 justify-center mb-6 animate-fade-in" style={{ animationDelay: '200ms' }}>
-            <Button
-              asChild
-              size="lg"
-              className="bg-gradient-to-r from-amber-400 to-amber-500 hover:from-amber-500 hover:to-amber-600 text-emerald-900 font-bold px-6 py-5 shadow-lg shadow-amber-500/30 hover:shadow-amber-500/50 transition-all duration-300"
-            >
-              <a href={cartUrl} target="_blank" rel="noopener noreferrer">
-                <ShoppingCart className="w-4 h-4 mr-2" />
-                Ir al carrito y activar Premium
-              </a>
-            </Button>
-            <Button
-              asChild
-              size="lg"
-              variant="outline"
-              className="border-white/30 text-white hover:bg-white/10 px-6 py-5"
-            >
-              <a href={whatsappUrl} target="_blank" rel="noopener noreferrer">
-                <WhatsAppIcon className="w-4 h-4 mr-2" />
-                Contactar por WhatsApp
-              </a>
-            </Button>
-          </div>
+          <CTAWrapper>
+            <GradientButton href={cartUrl} target="_blank" rel="noopener noreferrer">
+              <ShoppingCart size={16} />
+              Ir al carrito y activar Premium
+            </GradientButton>
+            <OutlineButton href={whatsappUrl} target="_blank" rel="noopener noreferrer">
+              <MessageCircle size={16} />
+              Contactar por WhatsApp
+            </OutlineButton>
+          </CTAWrapper>
 
-          {/* Trust signals */}
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-4 text-emerald-100/70 text-xs animate-fade-in" style={{ animationDelay: '300ms' }}>
-            <span className="flex items-center gap-1.5">
-              <CheckCircle className="w-3.5 h-3.5 text-emerald-400" />
+          <TrustSignals>
+            <TrustItem>
+              <CheckCircle size={14} color="#34d399" />
               Sin permanencia
-            </span>
-            <span className="flex items-center gap-1.5">
-              <CheckCircle className="w-3.5 h-3.5 text-emerald-400" />
+            </TrustItem>
+            <TrustItem>
+              <CheckCircle size={14} color="#34d399" />
               Cancela cuando quieras
-            </span>
-            <span className="flex items-center gap-1.5">
-              <CheckCircle className="w-3.5 h-3.5 text-emerald-400" />
+            </TrustItem>
+            <TrustItem>
+              <CheckCircle size={14} color="#34d399" />
               Soporte incluido
-            </span>
-          </div>
-        </div>
-      </div>
-    </section>
+            </TrustItem>
+          </TrustSignals>
+        </Content>
+      </Container>
+    </SectionWrapper>
   );
 };
 

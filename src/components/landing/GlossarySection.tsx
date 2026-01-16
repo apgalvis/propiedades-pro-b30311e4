@@ -1,3 +1,5 @@
+import styled from 'styled-components';
+
 const glossaryTerms = [
   {
     term: "Bolsa de leads",
@@ -25,37 +27,142 @@ const glossaryTerms = [
   },
 ];
 
+const SectionWrapper = styled.section`
+  padding: 2.5rem 0;
+  background: #f9fafb;
+`;
+
+const Container = styled.div`
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 1rem;
+`;
+
+const Header = styled.div`
+  text-align: center;
+  margin-bottom: 1.5rem;
+`;
+
+const Title = styled.h2`
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: #111827;
+  margin-bottom: 0.5rem;
+  
+  @media (min-width: 768px) {
+    font-size: 1.5rem;
+  }
+`;
+
+const Highlight = styled.span`
+  color: #059669;
+`;
+
+const TermsWrapper = styled.div`
+  max-width: 56rem;
+  margin: 0 auto;
+`;
+
+const TermsContainer = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.75rem;
+`;
+
+const TermItem = styled.div`
+  position: relative;
+  
+  &:hover > div {
+    opacity: 1;
+    visibility: visible;
+  }
+`;
+
+const TermBadge = styled.span`
+  display: inline-flex;
+  align-items: center;
+  gap: 0.375rem;
+  background: white;
+  border: 1px solid #e5e7eb;
+  border-radius: 9999px;
+  padding: 0.375rem 0.75rem;
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: #374151;
+  cursor: help;
+  transition: all 0.2s ease;
+
+  &:hover {
+    border-color: #6ee7b7;
+    background: #ecfdf5;
+  }
+`;
+
+const TermDot = styled.span`
+  width: 0.375rem;
+  height: 0.375rem;
+  background: #10b981;
+  border-radius: 9999px;
+`;
+
+const Tooltip = styled.div`
+  position: absolute;
+  bottom: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  margin-bottom: 0.5rem;
+  padding: 0.5rem 0.75rem;
+  background: #111827;
+  color: white;
+  font-size: 0.75rem;
+  border-radius: 0.5rem;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.2s ease;
+  width: 12rem;
+  text-align: center;
+  z-index: 10;
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+  
+  &::after {
+    content: '';
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    border: 4px solid transparent;
+    border-top-color: #111827;
+  }
+`;
+
 const GlossarySection = () => {
   return (
-    <section className="py-10 bg-gray-50">
-      <div className="container mx-auto px-4">
-        <div className="text-center mb-6">
-          <h2 className="text-xl md:text-2xl font-bold text-gray-900 mb-2">
-            <span className="text-emerald-600">Glosario</span> de términos
-          </h2>
-        </div>
+    <SectionWrapper>
+      <Container>
+        <Header>
+          <Title>
+            <Highlight>Glosario</Highlight> de términos
+          </Title>
+        </Header>
 
-        <div className="max-w-4xl mx-auto">
-          <div className="flex flex-wrap justify-center gap-3">
+        <TermsWrapper>
+          <TermsContainer>
             {glossaryTerms.map((item, index) => (
-              <div
-                key={index}
-                className="group relative"
-              >
-                <span className="inline-flex items-center gap-1.5 bg-white border border-gray-200 rounded-full px-3 py-1.5 text-sm font-medium text-gray-700 cursor-help hover:border-emerald-300 hover:bg-emerald-50 transition-colors">
-                  <span className="w-1.5 h-1.5 bg-emerald-500 rounded-full" />
+              <TermItem key={index}>
+                <TermBadge>
+                  <TermDot />
                   {item.term}
-                </span>
-                <div className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 px-3 py-2 bg-gray-900 text-white text-xs rounded-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 w-48 text-center z-10 shadow-lg">
+                </TermBadge>
+                <Tooltip>
                   {item.definition}
-                  <div className="absolute top-full left-1/2 -translate-x-1/2 border-4 border-transparent border-t-gray-900" />
-                </div>
-              </div>
+                </Tooltip>
+              </TermItem>
             ))}
-          </div>
-        </div>
-      </div>
-    </section>
+          </TermsContainer>
+        </TermsWrapper>
+      </Container>
+    </SectionWrapper>
   );
 };
 

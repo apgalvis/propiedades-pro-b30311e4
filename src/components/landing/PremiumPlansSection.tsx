@@ -1,5 +1,5 @@
-import { Button } from "@/components/ui/button";
-import { Check, X, Crown, Shield, Zap, Eye, MessageCircle, TrendingUp } from "lucide-react";
+import styled from 'styled-components';
+import { Check, X, Crown, Shield, Eye, MessageCircle, TrendingUp, Zap } from "lucide-react";
 
 interface PremiumPlansSectionProps {
   cartUrl: string;
@@ -17,158 +17,375 @@ const features = [
   { name: "Mayor posición en búsquedas", free: false, pro: false, proPlus: true },
 ];
 
+const SectionWrapper = styled.section`
+  padding: 3rem 0;
+  background: linear-gradient(to bottom, #ffffff, #f9fafb);
+`;
+
+const Container = styled.div`
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 1rem;
+`;
+
+const Header = styled.div`
+  text-align: center;
+  margin-bottom: 2.5rem;
+`;
+
+const Title = styled.h2`
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #111827;
+  margin-bottom: 0.75rem;
+  
+  @media (min-width: 768px) {
+    font-size: 1.875rem;
+  }
+`;
+
+const Highlight = styled.span`
+  color: #059669;
+`;
+
+const Subtitle = styled.p`
+  color: #4b5563;
+  max-width: 36rem;
+  margin: 0 auto;
+  font-size: 0.875rem;
+`;
+
+const PlansGrid = styled.div`
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+  max-width: 56rem;
+  margin: 0 auto 2.5rem;
+  
+  @media (min-width: 768px) {
+    grid-template-columns: repeat(3, 1fr);
+  }
+`;
+
+const PlanCard = styled.div<{ $variant?: 'default' | 'pro' | 'premium' }>`
+  background: ${props => props.$variant === 'premium' ? '#065f46' : 'white'};
+  border: ${props => {
+    if (props.$variant === 'pro') return '2px solid #a7f3d0';
+    if (props.$variant === 'premium') return '2px solid #047857';
+    return '1px solid #e5e7eb';
+  }};
+  border-radius: 0.75rem;
+  padding: 1.25rem;
+  text-align: center;
+  position: relative;
+  box-shadow: ${props => props.$variant === 'premium' ? '0 10px 15px -3px rgba(0, 0, 0, 0.1)' : 'none'};
+`;
+
+const PopularBadge = styled.span`
+  position: absolute;
+  top: -0.5rem;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #fbbf24;
+  color: #78350f;
+  font-size: 0.625rem;
+  font-weight: 700;
+  padding: 0.125rem 0.5rem;
+  border-radius: 9999px;
+`;
+
+const PlanIconWrapper = styled.div<{ $variant?: 'default' | 'pro' | 'premium' }>`
+  width: 3rem;
+  height: 3rem;
+  background: ${props => {
+    if (props.$variant === 'premium') return 'rgba(5, 150, 105, 0.5)';
+    if (props.$variant === 'pro') return '#d1fae5';
+    return '#f3f4f6';
+  }};
+  border-radius: 9999px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 0.75rem;
+`;
+
+const PlanTitle = styled.h3<{ $light?: boolean }>`
+  font-weight: 700;
+  color: ${props => props.$light ? 'white' : '#111827'};
+  margin-bottom: 0.25rem;
+`;
+
+const PlanSubtitle = styled.p<{ $variant?: 'default' | 'pro' | 'premium' }>`
+  font-size: 0.75rem;
+  color: ${props => props.$variant === 'premium' ? '#a7f3d0' : '#6b7280'};
+  margin-bottom: 1rem;
+`;
+
+const ProgressBar = styled.div<{ $variant?: 'default' | 'pro' | 'premium' }>`
+  height: 0.5rem;
+  background: ${props => props.$variant === 'premium' ? '#064e3b' : '#f3f4f6'};
+  border-radius: 9999px;
+  overflow: hidden;
+  margin-bottom: 0.75rem;
+`;
+
+const ProgressFill = styled.div<{ $width: string; $variant?: 'default' | 'pro' | 'premium' }>`
+  height: 100%;
+  width: ${props => props.$width};
+  background: ${props => {
+    if (props.$variant === 'premium') return '#34d399';
+    if (props.$variant === 'pro') return '#10b981';
+    return '#9ca3af';
+  }};
+  border-radius: 9999px;
+`;
+
+const ProgressLabel = styled.p<{ $variant?: 'default' | 'pro' | 'premium' }>`
+  font-size: 0.75rem;
+  color: ${props => {
+    if (props.$variant === 'premium') return '#6ee7b7';
+    if (props.$variant === 'pro') return '#059669';
+    return '#9ca3af';
+  }};
+  font-weight: ${props => props.$variant !== 'default' ? '500' : '400'};
+`;
+
+const ComparisonTable = styled.div`
+  background: white;
+  border-radius: 0.75rem;
+  border: 1px solid #e5e7eb;
+  overflow: hidden;
+  max-width: 56rem;
+  margin: 0 auto 2rem;
+`;
+
+const TableHeader = styled.div`
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  background: #f9fafb;
+  border-bottom: 1px solid #e5e7eb;
+`;
+
+const TableHeaderCell = styled.div<{ $highlight?: boolean }>`
+  padding: 0.75rem;
+  font-size: 0.75rem;
+  font-weight: 500;
+  color: ${props => props.$highlight ? '#059669' : '#6b7280'};
+  text-align: center;
+  background: ${props => props.$highlight ? '#ecfdf5' : 'transparent'};
+  
+  &:first-child {
+    text-align: left;
+  }
+`;
+
+const TableRow = styled.div<{ $isLast?: boolean }>`
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  border-bottom: ${props => props.$isLast ? 'none' : '1px solid #f3f4f6'};
+`;
+
+const TableCell = styled.div<{ $highlight?: boolean }>`
+  padding: 0.75rem;
+  font-size: 0.75rem;
+  color: #374151;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: ${props => props.$highlight ? 'rgba(236, 253, 245, 0.5)' : 'transparent'};
+  
+  &:first-child {
+    justify-content: flex-start;
+  }
+`;
+
+const BenefitsRow = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+  max-width: 48rem;
+  margin-left: auto;
+  margin-right: auto;
+`;
+
+const BenefitItem = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+`;
+
+const BenefitIcon = styled.div`
+  width: 2rem;
+  height: 2rem;
+  background: #d1fae5;
+  border-radius: 9999px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`;
+
+const BenefitLabel = styled.span`
+  font-size: 0.875rem;
+  color: #4b5563;
+`;
+
+const CTAWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  justify-content: center;
+  
+  @media (min-width: 640px) {
+    flex-direction: row;
+  }
+`;
+
+const PrimaryButton = styled.a`
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.75rem 1.5rem;
+  background: #059669;
+  color: white;
+  font-weight: 500;
+  border-radius: 0.5rem;
+  text-decoration: none;
+  transition: background 0.2s ease;
+
+  &:hover {
+    background: #10b981;
+  }
+`;
+
+const SecondaryButton = styled.a`
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.5rem;
+  background: transparent;
+  border: 1px solid #a7f3d0;
+  color: #047857;
+  font-weight: 500;
+  border-radius: 0.5rem;
+  text-decoration: none;
+  transition: background 0.2s ease;
+
+  &:hover {
+    background: #ecfdf5;
+  }
+`;
+
 const PremiumPlansSection = ({ cartUrl, whatsappUrl }: PremiumPlansSectionProps) => {
   return (
-    <section className="py-12 bg-gradient-to-b from-white to-gray-50">
-      <div className="container mx-auto px-4">
-        {/* Header */}
-        <div className="text-center mb-10">
-          <h2 className="text-2xl md:text-3xl font-bold text-gray-900 mb-3">
-            Compara y elige tu <span className="text-emerald-600">nivel de visibilidad</span>
-          </h2>
-          <p className="text-gray-600 max-w-xl mx-auto text-sm">
+    <SectionWrapper>
+      <Container>
+        <Header>
+          <Title>
+            Compara y elige tu <Highlight>nivel de visibilidad</Highlight>
+          </Title>
+          <Subtitle>
             Desde publicación gratuita hasta máxima exposición premium
-          </p>
-        </div>
+          </Subtitle>
+        </Header>
 
-        {/* Visual Cards */}
-        <div className="grid md:grid-cols-3 gap-4 max-w-4xl mx-auto mb-10">
-          {/* Gratis */}
-          <div className="bg-white border border-gray-200 rounded-xl p-5 text-center relative">
-            <div className="w-12 h-12 bg-gray-100 rounded-full flex items-center justify-center mx-auto mb-3">
-              <Eye className="w-6 h-6 text-gray-500" />
-            </div>
-            <h3 className="font-bold text-gray-900 mb-1">Gratis</h3>
-            <p className="text-xs text-gray-500 mb-4">Publicación básica</p>
-            
-            {/* Visual indicator */}
-            <div className="h-2 bg-gray-100 rounded-full overflow-hidden mb-3">
-              <div className="h-full bg-gray-400 rounded-full" style={{ width: '25%' }} />
-            </div>
-            <p className="text-xs text-gray-400">Visibilidad limitada</p>
-          </div>
+        <PlansGrid>
+          <PlanCard>
+            <PlanIconWrapper>
+              <Eye size={24} color="#6b7280" />
+            </PlanIconWrapper>
+            <PlanTitle>Gratis</PlanTitle>
+            <PlanSubtitle>Publicación básica</PlanSubtitle>
+            <ProgressBar>
+              <ProgressFill $width="25%" />
+            </ProgressBar>
+            <ProgressLabel>Visibilidad limitada</ProgressLabel>
+          </PlanCard>
 
-          {/* Plan Pro */}
-          <div className="bg-white border-2 border-emerald-200 rounded-xl p-5 text-center relative shadow-sm">
-            <div className="w-12 h-12 bg-emerald-100 rounded-full flex items-center justify-center mx-auto mb-3">
-              <Crown className="w-6 h-6 text-emerald-600" />
-            </div>
-            <h3 className="font-bold text-gray-900 mb-1">Plan Pro</h3>
-            <p className="text-xs text-gray-500 mb-4">Visibilidad continua</p>
-            
-            {/* Visual indicator */}
-            <div className="h-2 bg-gray-100 rounded-full overflow-hidden mb-3">
-              <div className="h-full bg-emerald-500 rounded-full" style={{ width: '65%' }} />
-            </div>
-            <p className="text-xs text-emerald-600 font-medium">3x más alcance</p>
-          </div>
+          <PlanCard $variant="pro">
+            <PlanIconWrapper $variant="pro">
+              <Crown size={24} color="#059669" />
+            </PlanIconWrapper>
+            <PlanTitle>Plan Pro</PlanTitle>
+            <PlanSubtitle $variant="pro">Visibilidad continua</PlanSubtitle>
+            <ProgressBar $variant="pro">
+              <ProgressFill $width="65%" $variant="pro" />
+            </ProgressBar>
+            <ProgressLabel $variant="pro">3x más alcance</ProgressLabel>
+          </PlanCard>
 
-          {/* Plan Pro + Destacados */}
-          <div className="bg-emerald-800 border-2 border-emerald-700 rounded-xl p-5 text-center relative shadow-lg">
-            <span className="absolute -top-2 left-1/2 -translate-x-1/2 bg-amber-400 text-amber-900 text-[10px] font-bold px-2 py-0.5 rounded-full">
-              POPULAR
-            </span>
-            <div className="w-12 h-12 bg-emerald-700/50 rounded-full flex items-center justify-center mx-auto mb-3">
-              <Shield className="w-6 h-6 text-emerald-300" />
-            </div>
-            <h3 className="font-bold text-white mb-1">Pro + Destacados</h3>
-            <p className="text-xs text-emerald-200 mb-4">Máxima visibilidad</p>
-            
-            {/* Visual indicator */}
-            <div className="h-2 bg-emerald-900 rounded-full overflow-hidden mb-3">
-              <div className="h-full bg-emerald-400 rounded-full" style={{ width: '100%' }} />
-            </div>
-            <p className="text-xs text-emerald-300 font-medium">5x más alcance</p>
-          </div>
-        </div>
+          <PlanCard $variant="premium">
+            <PopularBadge>POPULAR</PopularBadge>
+            <PlanIconWrapper $variant="premium">
+              <Shield size={24} color="#6ee7b7" />
+            </PlanIconWrapper>
+            <PlanTitle $light>Pro + Destacados</PlanTitle>
+            <PlanSubtitle $variant="premium">Máxima visibilidad</PlanSubtitle>
+            <ProgressBar $variant="premium">
+              <ProgressFill $width="100%" $variant="premium" />
+            </ProgressBar>
+            <ProgressLabel $variant="premium">5x más alcance</ProgressLabel>
+          </PlanCard>
+        </PlansGrid>
 
-        {/* Comparison Table */}
-        <div className="bg-white rounded-xl border border-gray-200 overflow-hidden max-w-4xl mx-auto mb-8">
-          <div className="grid grid-cols-4 bg-gray-50 border-b border-gray-200">
-            <div className="p-3 text-xs font-medium text-gray-500">Característica</div>
-            <div className="p-3 text-xs font-medium text-gray-500 text-center">Gratis</div>
-            <div className="p-3 text-xs font-medium text-emerald-600 text-center">Pro</div>
-            <div className="p-3 text-xs font-medium text-emerald-700 text-center bg-emerald-50">Pro + Destacados</div>
-          </div>
+        <ComparisonTable>
+          <TableHeader>
+            <TableHeaderCell>Característica</TableHeaderCell>
+            <TableHeaderCell>Gratis</TableHeaderCell>
+            <TableHeaderCell $highlight>Pro</TableHeaderCell>
+            <TableHeaderCell $highlight>Pro + Destacados</TableHeaderCell>
+          </TableHeader>
           
           {features.map((feature, index) => (
-            <div 
-              key={index} 
-              className={`grid grid-cols-4 ${index !== features.length - 1 ? 'border-b border-gray-100' : ''}`}
-            >
-              <div className="p-3 text-xs text-gray-700">{feature.name}</div>
-              <div className="p-3 flex justify-center">
-                {feature.free ? (
-                  <Check className="w-4 h-4 text-gray-400" />
-                ) : (
-                  <X className="w-4 h-4 text-gray-300" />
-                )}
-              </div>
-              <div className="p-3 flex justify-center">
-                {feature.pro ? (
-                  <Check className="w-4 h-4 text-emerald-500" />
-                ) : (
-                  <X className="w-4 h-4 text-gray-300" />
-                )}
-              </div>
-              <div className="p-3 flex justify-center bg-emerald-50/50">
-                {feature.proPlus ? (
-                  <Check className="w-4 h-4 text-emerald-600" />
-                ) : (
-                  <X className="w-4 h-4 text-gray-300" />
-                )}
-              </div>
-            </div>
+            <TableRow key={index} $isLast={index === features.length - 1}>
+              <TableCell>{feature.name}</TableCell>
+              <TableCell>
+                {feature.free ? <Check size={16} color="#9ca3af" /> : <X size={16} color="#d1d5db" />}
+              </TableCell>
+              <TableCell>
+                {feature.pro ? <Check size={16} color="#10b981" /> : <X size={16} color="#d1d5db" />}
+              </TableCell>
+              <TableCell $highlight>
+                {feature.proPlus ? <Check size={16} color="#059669" /> : <X size={16} color="#d1d5db" />}
+              </TableCell>
+            </TableRow>
           ))}
-        </div>
+        </ComparisonTable>
 
-        {/* Visual Benefits Row */}
-        <div className="flex flex-wrap justify-center gap-6 mb-8 max-w-3xl mx-auto">
-          <div className="flex items-center gap-2">
-            <div className="w-8 h-8 bg-emerald-100 rounded-full flex items-center justify-center">
-              <TrendingUp className="w-4 h-4 text-emerald-600" />
-            </div>
-            <span className="text-sm text-gray-600">Más visitas</span>
-          </div>
-          <div className="flex items-center gap-2">
-            <div className="w-8 h-8 bg-emerald-100 rounded-full flex items-center justify-center">
-              <Zap className="w-4 h-4 text-emerald-600" />
-            </div>
-            <span className="text-sm text-gray-600">Leads más rápido</span>
-          </div>
-          <div className="flex items-center gap-2">
-            <div className="w-8 h-8 bg-emerald-100 rounded-full flex items-center justify-center">
-              <MessageCircle className="w-4 h-4 text-emerald-600" />
-            </div>
-            <span className="text-sm text-gray-600">WhatsApp ilimitado</span>
-          </div>
-        </div>
+        <BenefitsRow>
+          <BenefitItem>
+            <BenefitIcon>
+              <TrendingUp size={16} color="#059669" />
+            </BenefitIcon>
+            <BenefitLabel>Más visitas</BenefitLabel>
+          </BenefitItem>
+          <BenefitItem>
+            <BenefitIcon>
+              <Zap size={16} color="#059669" />
+            </BenefitIcon>
+            <BenefitLabel>Leads más rápido</BenefitLabel>
+          </BenefitItem>
+          <BenefitItem>
+            <BenefitIcon>
+              <MessageCircle size={16} color="#059669" />
+            </BenefitIcon>
+            <BenefitLabel>WhatsApp ilimitado</BenefitLabel>
+          </BenefitItem>
+        </BenefitsRow>
 
-        {/* CTA */}
-        <div className="flex flex-col sm:flex-row gap-3 justify-center">
-          <Button
-            asChild
-            size="lg"
-            className="bg-emerald-600 hover:bg-emerald-500 text-white"
-          >
-            <a href={cartUrl} target="_blank" rel="noopener noreferrer">
-              Ver planes y precios
-            </a>
-          </Button>
-          <Button
-            asChild
-            size="lg"
-            variant="outline"
-            className="border-emerald-200 text-emerald-700 hover:bg-emerald-50"
-          >
-            <a href={whatsappUrl} target="_blank" rel="noopener noreferrer">
-              <MessageCircle className="w-4 h-4 mr-2" />
-              Asesoría personalizada
-            </a>
-          </Button>
-        </div>
-      </div>
-    </section>
+        <CTAWrapper>
+          <PrimaryButton href={cartUrl} target="_blank" rel="noopener noreferrer">
+            Ver planes y precios
+          </PrimaryButton>
+          <SecondaryButton href={whatsappUrl} target="_blank" rel="noopener noreferrer">
+            <MessageCircle size={16} />
+            Asesoría personalizada
+          </SecondaryButton>
+        </CTAWrapper>
+      </Container>
+    </SectionWrapper>
   );
 };
 

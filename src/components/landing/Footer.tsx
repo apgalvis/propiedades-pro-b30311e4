@@ -1,39 +1,103 @@
+import styled from 'styled-components';
 import { Building2 } from "lucide-react";
+
+const FooterWrapper = styled.footer`
+  background: #111827;
+  color: #9ca3af;
+  padding: 3rem 0;
+`;
+
+const Container = styled.div`
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 1rem;
+`;
+
+const FooterContent = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.5rem;
+  
+  @media (min-width: 768px) {
+    flex-direction: row;
+  }
+`;
+
+const Logo = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: white;
+`;
+
+const LogoText = styled.span`
+  font-weight: 700;
+  font-size: 1.125rem;
+`;
+
+const Nav = styled.nav`
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 1.5rem;
+  font-size: 0.875rem;
+`;
+
+const NavLink = styled.a`
+  color: #9ca3af;
+  text-decoration: none;
+  position: relative;
+  transition: color 0.2s ease;
+
+  &::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: #34d399;
+    transition: width 0.3s ease;
+  }
+
+  &:hover {
+    color: white;
+    
+    &::after {
+      width: 100%;
+    }
+  }
+`;
+
+const Copyright = styled.p`
+  font-size: 0.875rem;
+`;
 
 const Footer = () => {
   return (
-    <footer className="bg-gray-900 text-gray-400 py-12">
-      <div className="container mx-auto px-4">
-        <div className="flex flex-col md:flex-row items-center justify-between gap-6">
-          {/* Logo */}
-          <div className="flex items-center gap-2 text-white">
-            <Building2 className="w-6 h-6 text-emerald-400" />
-            <span className="font-bold text-lg">propiedades.com</span>
-          </div>
+    <FooterWrapper>
+      <Container>
+        <FooterContent>
+          <Logo>
+            <Building2 size={24} color="#34d399" />
+            <LogoText>propiedades.com</LogoText>
+          </Logo>
 
-          {/* Links */}
-          <nav className="flex flex-wrap items-center justify-center gap-6 text-sm">
-            <a href="#" className="hover:text-white transition-colors relative group">
-              Términos y Condiciones
-              <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-emerald-400 group-hover:w-full transition-all duration-300" />
-            </a>
-            <a href="#" className="hover:text-white transition-colors relative group">
-              Política de Privacidad
-              <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-emerald-400 group-hover:w-full transition-all duration-300" />
-            </a>
-            <a href="#" className="hover:text-white transition-colors relative group">
-              Contacto
-              <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-emerald-400 group-hover:w-full transition-all duration-300" />
-            </a>
-          </nav>
+          <Nav>
+            <NavLink href="#">Términos y Condiciones</NavLink>
+            <NavLink href="#">Política de Privacidad</NavLink>
+            <NavLink href="#">Contacto</NavLink>
+          </Nav>
 
-          {/* Copyright */}
-          <p className="text-sm">
+          <Copyright>
             © {new Date().getFullYear()} propiedades.com. Todos los derechos reservados.
-          </p>
-        </div>
-      </div>
-    </footer>
+          </Copyright>
+        </FooterContent>
+      </Container>
+    </FooterWrapper>
   );
 };
 

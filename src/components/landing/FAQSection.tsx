@@ -1,11 +1,6 @@
+import styled from 'styled-components';
 import { useState } from "react";
-import {
-  Accordion,
-  AccordionContent,
-  AccordionItem,
-  AccordionTrigger,
-} from "@/components/ui/accordion";
-import { HelpCircle, Package, CreditCard, Zap } from "lucide-react";
+import { HelpCircle, Package, CreditCard, Zap, ChevronDown } from "lucide-react";
 
 const faqCategories = [
   {
@@ -94,72 +89,212 @@ const faqCategories = [
   },
 ];
 
+const SectionWrapper = styled.section`
+  padding: 3rem 0;
+  background: white;
+`;
+
+const Container = styled.div`
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 1rem;
+`;
+
+const Header = styled.div`
+  text-align: center;
+  margin-bottom: 2rem;
+`;
+
+const Title = styled.h2`
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #111827;
+  margin-bottom: 0.75rem;
+  
+  @media (min-width: 768px) {
+    font-size: 1.875rem;
+  }
+`;
+
+const Highlight = styled.span`
+  color: #059669;
+`;
+
+const Subtitle = styled.p`
+  color: #4b5563;
+  max-width: 42rem;
+  margin: 0 auto;
+  font-size: 0.875rem;
+`;
+
+const CategoryTabs = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.5rem;
+  margin-bottom: 2rem;
+`;
+
+const CategoryTab = styled.button<{ $active: boolean }>`
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 1rem;
+  border-radius: 9999px;
+  font-size: 0.875rem;
+  font-weight: 500;
+  border: none;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  background: ${props => props.$active ? '#059669' : '#f3f4f6'};
+  color: ${props => props.$active ? 'white' : '#4b5563'};
+  box-shadow: ${props => props.$active ? '0 4px 6px -1px rgba(0, 0, 0, 0.1)' : 'none'};
+
+  &:hover {
+    background: ${props => props.$active ? '#059669' : '#e5e7eb'};
+  }
+`;
+
+const AccordionWrapper = styled.div`
+  max-width: 48rem;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+`;
+
+const AccordionItem = styled.div<{ $isOpen: boolean }>`
+  background: ${props => props.$isOpen ? '#ecfdf5' : '#f9fafb'};
+  border: 1px solid ${props => props.$isOpen ? '#a7f3d0' : '#f3f4f6'};
+  border-radius: 0.75rem;
+  overflow: hidden;
+  transition: all 0.2s ease;
+`;
+
+const AccordionTrigger = styled.button<{ $isOpen: boolean }>`
+  width: 100%;
+  padding: 1rem 1.25rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  text-align: left;
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: ${props => props.$isOpen ? '#047857' : '#111827'};
+  transition: color 0.2s ease;
+
+  &:hover {
+    color: #047857;
+  }
+`;
+
+const ChevronIcon = styled.span<{ $isOpen: boolean }>`
+  display: flex;
+  align-items: center;
+  transition: transform 0.2s ease;
+  transform: ${props => props.$isOpen ? 'rotate(180deg)' : 'rotate(0)'};
+`;
+
+const AccordionContent = styled.div<{ $isOpen: boolean }>`
+  max-height: ${props => props.$isOpen ? '500px' : '0'};
+  overflow: hidden;
+  transition: max-height 0.3s ease;
+`;
+
+const AccordionContentInner = styled.div`
+  padding: 0 1.25rem 1rem;
+  font-size: 0.875rem;
+  color: #4b5563;
+  line-height: 1.6;
+`;
+
+const HelpNote = styled.p`
+  text-align: center;
+  color: #6b7280;
+  font-size: 0.75rem;
+  margin-top: 2rem;
+  
+  a {
+    color: #059669;
+    font-weight: 500;
+    text-decoration: none;
+    
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+`;
+
 const FAQSection = () => {
   const [activeCategory, setActiveCategory] = useState("general");
+  const [openItem, setOpenItem] = useState<number | null>(null);
   const currentCategory = faqCategories.find((cat) => cat.id === activeCategory);
 
-  return (
-    <section className="py-12 bg-white">
-      <div className="container mx-auto px-4">
-        <div className="text-center mb-8">
-          <h2 className="text-2xl md:text-3xl font-bold text-gray-900 mb-3">
-            Preguntas <span className="text-emerald-600">frecuentes</span>
-          </h2>
-          <p className="text-gray-600 max-w-2xl mx-auto text-sm">
-            Resolvemos tus dudas sobre el modelo de publicación y los planes
-          </p>
-        </div>
+  const toggleItem = (index: number) => {
+    setOpenItem(openItem === index ? null : index);
+  };
 
-        {/* Category Tabs */}
-        <div className="flex flex-wrap justify-center gap-2 mb-8">
+  return (
+    <SectionWrapper>
+      <Container>
+        <Header>
+          <Title>
+            Preguntas <Highlight>frecuentes</Highlight>
+          </Title>
+          <Subtitle>
+            Resolvemos tus dudas sobre el modelo de publicación y los planes
+          </Subtitle>
+        </Header>
+
+        <CategoryTabs>
           {faqCategories.map((category) => {
             const Icon = category.icon;
             return (
-              <button
+              <CategoryTab
                 key={category.id}
-                onClick={() => setActiveCategory(category.id)}
-                className={`flex items-center gap-2 px-4 py-2 rounded-full text-sm font-medium transition-all ${
-                  activeCategory === category.id
-                    ? "bg-emerald-600 text-white shadow-md"
-                    : "bg-gray-100 text-gray-600 hover:bg-gray-200"
-                }`}
+                $active={activeCategory === category.id}
+                onClick={() => {
+                  setActiveCategory(category.id);
+                  setOpenItem(null);
+                }}
               >
-                <Icon className="w-4 h-4" />
+                <Icon size={16} />
                 {category.label}
-              </button>
+              </CategoryTab>
             );
           })}
-        </div>
+        </CategoryTabs>
 
-        {/* FAQ Accordion */}
-        <div className="max-w-3xl mx-auto">
-          <Accordion type="single" collapsible className="space-y-2">
-            {currentCategory?.faqs.map((faq, index) => (
-              <AccordionItem
-                key={index}
-                value={`item-${index}`}
-                className="bg-gray-50 rounded-xl border border-gray-100 px-5 data-[state=open]:bg-emerald-50 data-[state=open]:border-emerald-200 transition-all duration-200"
+        <AccordionWrapper>
+          {currentCategory?.faqs.map((faq, index) => (
+            <AccordionItem key={index} $isOpen={openItem === index}>
+              <AccordionTrigger 
+                $isOpen={openItem === index}
+                onClick={() => toggleItem(index)}
               >
-                <AccordionTrigger className="text-left hover:no-underline py-4 text-gray-900 font-medium text-sm hover:text-emerald-700 transition-colors">
-                  {faq.question}
-                </AccordionTrigger>
-                <AccordionContent className="text-gray-600 pb-4 text-sm leading-relaxed">
+                {faq.question}
+                <ChevronIcon $isOpen={openItem === index}>
+                  <ChevronDown size={16} />
+                </ChevronIcon>
+              </AccordionTrigger>
+              <AccordionContent $isOpen={openItem === index}>
+                <AccordionContentInner>
                   {faq.answer}
-                </AccordionContent>
-              </AccordionItem>
-            ))}
-          </Accordion>
-        </div>
+                </AccordionContentInner>
+              </AccordionContent>
+            </AccordionItem>
+          ))}
+        </AccordionWrapper>
 
-        {/* Help CTA */}
-        <p className="text-center text-gray-500 text-xs mt-8">
+        <HelpNote>
           ¿No encuentras tu respuesta?{" "}
-          <a href="#" className="text-emerald-600 hover:underline font-medium">
-            Contáctanos por WhatsApp
-          </a>
-        </p>
-      </div>
-    </section>
+          <a href="#">Contáctanos por WhatsApp</a>
+        </HelpNote>
+      </Container>
+    </SectionWrapper>
   );
 };
 

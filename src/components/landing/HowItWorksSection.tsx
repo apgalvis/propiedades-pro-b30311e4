@@ -1,3 +1,4 @@
+import styled from 'styled-components';
 import { Upload, Eye, CheckCircle, PauseCircle, TrendingUp } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 
@@ -6,33 +7,222 @@ const steps = [
     icon: Upload,
     title: "Publica tu inmueble",
     description: "Sube tus propiedades sin límite. Siempre editables.",
-    color: "bg-emerald-500",
+    color: "#10b981",
   },
   {
     icon: Eye,
     title: "Activa la visibilidad",
     description: "Tu propiedad se muestra y consume leads de tu bolsa gratuita.",
-    color: "bg-emerald-600",
+    color: "#059669",
   },
   {
     icon: CheckCircle,
     title: "Recibe contactos verificados",
     description: "Leads únicos y verificados llegan directo a ti.",
-    color: "bg-emerald-700",
+    color: "#047857",
   },
   {
     icon: PauseCircle,
     title: "Pausa de 30 días",
     description: "Cuando se agota la bolsa, pausa temporal. Se recarga automáticamente.",
-    color: "bg-gray-500",
+    color: "#6b7280",
   },
   {
     icon: TrendingUp,
     title: "Escala si quieres",
     description: "Con el Plan Pro estarás siempre visible, sin pausas.",
-    color: "bg-emerald-500",
+    color: "#10b981",
   },
 ];
+
+const SectionWrapper = styled.section`
+  padding: 3rem 0;
+  background: linear-gradient(to bottom, #f9fafb, #ffffff);
+`;
+
+const Container = styled.div`
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 1rem;
+`;
+
+const Header = styled.div`
+  text-align: center;
+  margin-bottom: 2.5rem;
+`;
+
+const Title = styled.h2`
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #111827;
+  margin-bottom: 0.75rem;
+  
+  @media (min-width: 768px) {
+    font-size: 1.875rem;
+  }
+`;
+
+const Highlight = styled.span`
+  color: #059669;
+`;
+
+const Subtitle = styled.p`
+  color: #4b5563;
+  max-width: 42rem;
+  margin: 0 auto;
+  font-size: 0.875rem;
+`;
+
+const StepsContainer = styled.div`
+  position: relative;
+  max-width: 56rem;
+  margin: 0 auto;
+`;
+
+const ConnectingLine = styled.div<{ $isVisible: boolean }>`
+  position: absolute;
+  left: 50%;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background: #e5e7eb;
+  transform: translateX(-50%);
+  display: none;
+  
+  @media (min-width: 768px) {
+    display: block;
+  }
+  
+  &::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background: #10b981;
+    height: ${props => props.$isVisible ? '100%' : '0'};
+    transition: height 1s ease-out;
+  }
+`;
+
+const StepsWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  
+  @media (min-width: 768px) {
+    gap: 0;
+  }
+`;
+
+const StepItem = styled.div<{ $index: number; $isVisible: boolean }>`
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  opacity: ${props => props.$isVisible ? 1 : 0};
+  animation: ${props => props.$isVisible ? 'fadeIn 0.5s ease-out forwards' : 'none'};
+  animation-delay: ${props => props.$index * 150}ms;
+  
+  @media (min-width: 768px) {
+    gap: 2rem;
+    flex-direction: ${props => props.$index % 2 === 0 ? 'row' : 'row-reverse'};
+  }
+  
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+`;
+
+const StepContent = styled.div<{ $index: number }>`
+  flex: 1;
+  
+  @media (min-width: 768px) {
+    text-align: ${props => props.$index % 2 === 0 ? 'right' : 'left'};
+  }
+`;
+
+const StepCard = styled.div`
+  background: white;
+  padding: 1rem;
+  border-radius: 0.75rem;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+  border: 1px solid #f3f4f6;
+  transition: box-shadow 0.3s ease;
+  
+  &:hover {
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+  }
+`;
+
+const StepTitle = styled.h3`
+  font-size: 1rem;
+  font-weight: 600;
+  color: #111827;
+  margin-bottom: 0.25rem;
+`;
+
+const StepDescription = styled.p`
+  color: #4b5563;
+  font-size: 0.875rem;
+`;
+
+const IconContainer = styled.div<{ $color: string }>`
+  position: relative;
+  z-index: 10;
+  flex-shrink: 0;
+  width: 3rem;
+  height: 3rem;
+  background: ${props => props.$color};
+  border-radius: 9999px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+`;
+
+const StepNumber = styled.span`
+  position: absolute;
+  top: -0.25rem;
+  right: -0.25rem;
+  width: 1.25rem;
+  height: 1.25rem;
+  background: white;
+  border-radius: 9999px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: #374151;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+`;
+
+const Spacer = styled.div`
+  flex: 1;
+  display: none;
+  
+  @media (min-width: 768px) {
+    display: block;
+  }
+`;
+
+const Note = styled.p`
+  text-align: center;
+  font-size: 0.75rem;
+  color: #6b7280;
+  margin-top: 2rem;
+  max-width: 36rem;
+  margin-left: auto;
+  margin-right: auto;
+`;
 
 const HowItWorksSection = () => {
   const [isVisible, setIsVisible] = useState(false);
@@ -56,66 +246,46 @@ const HowItWorksSection = () => {
   }, []);
 
   return (
-    <section ref={sectionRef} className="py-12 bg-gradient-to-b from-gray-50 to-white">
-      <div className="container mx-auto px-4">
-        <div className="text-center mb-10">
-          <h2 className="text-2xl md:text-3xl font-bold text-gray-900 mb-3">
-            ¿Cómo funciona la versión <span className="text-emerald-600">gratuita</span>?
-          </h2>
-          <p className="text-gray-600 max-w-2xl mx-auto text-sm">
+    <SectionWrapper ref={sectionRef}>
+      <Container>
+        <Header>
+          <Title>
+            ¿Cómo funciona la versión <Highlight>gratuita</Highlight>?
+          </Title>
+          <Subtitle>
             Un modelo transparente que te permite comenzar sin inversión inicial
-          </p>
-        </div>
+          </Subtitle>
+        </Header>
 
-        <div className="relative max-w-4xl mx-auto">
-          {/* Connecting line */}
-          <div className="absolute left-1/2 top-0 bottom-0 w-0.5 bg-gray-200 -translate-x-1/2 hidden md:block">
-            <div 
-              className={`absolute top-0 left-0 w-full bg-emerald-500 transition-all duration-1000 ease-out ${
-                isVisible ? 'h-full' : 'h-0'
-              }`}
-            />
-          </div>
+        <StepsContainer>
+          <ConnectingLine $isVisible={isVisible} />
 
-          {/* Steps */}
-          <div className="space-y-6 md:space-y-0">
+          <StepsWrapper>
             {steps.map((step, index) => (
-              <div
-                key={index}
-                className={`relative flex items-center gap-4 md:gap-8 ${
-                  index % 2 === 0 ? 'md:flex-row' : 'md:flex-row-reverse'
-                } ${isVisible ? 'animate-fade-in' : 'opacity-0'}`}
-                style={{ animationDelay: `${index * 150}ms` }}
-              >
-                {/* Content */}
-                <div className={`flex-1 ${index % 2 === 0 ? 'md:text-right' : 'md:text-left'}`}>
-                  <div className="bg-white p-4 rounded-xl shadow-md border border-gray-100 hover:shadow-lg transition-shadow duration-300">
-                    <h3 className="text-base font-semibold text-gray-900 mb-1">{step.title}</h3>
-                    <p className="text-gray-600 text-sm">{step.description}</p>
-                  </div>
-                </div>
+              <StepItem key={index} $index={index} $isVisible={isVisible}>
+                <StepContent $index={index}>
+                  <StepCard>
+                    <StepTitle>{step.title}</StepTitle>
+                    <StepDescription>{step.description}</StepDescription>
+                  </StepCard>
+                </StepContent>
 
-                {/* Icon */}
-                <div className={`relative z-10 flex-shrink-0 w-12 h-12 ${step.color} rounded-full flex items-center justify-center shadow-md`}>
-                  <step.icon className="w-6 h-6 text-white" />
-                  <span className="absolute -top-1 -right-1 w-5 h-5 bg-white rounded-full flex items-center justify-center text-xs font-bold text-gray-700 shadow">
-                    {index + 1}
-                  </span>
-                </div>
+                <IconContainer $color={step.color}>
+                  <step.icon size={24} color="white" />
+                  <StepNumber>{index + 1}</StepNumber>
+                </IconContainer>
 
-                {/* Spacer for alternating layout */}
-                <div className="hidden md:block flex-1" />
-              </div>
+                <Spacer />
+              </StepItem>
             ))}
-          </div>
-        </div>
+          </StepsWrapper>
+        </StepsContainer>
 
-        {/* Note */}
-        <p className="text-center text-xs text-gray-500 mt-8 max-w-xl mx-auto">
+        <Note>
           💡 Durante la pausa, tus propiedades siguen editables y listas para reactivarse cuando tu bolsa se recargue.
-        </p>
-      </div>
-    </section>
+        </Note>
+      </Container>
+    </SectionWrapper>
   );
 };
 

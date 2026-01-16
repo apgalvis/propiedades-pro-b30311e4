@@ -1,7 +1,6 @@
-import { Infinity, Eye, Trophy, Smartphone, BarChart3, Headphones } from "lucide-react";
-import { Button } from "@/components/ui/button";
+import styled from 'styled-components';
+import { Infinity, Eye, Trophy, Smartphone, BarChart3, Headphones, MessageCircle } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
-import { MessageCircle as WhatsAppIcon } from "lucide-react";
 
 interface PremiumBenefitsProps {
   cartUrl: string;
@@ -16,6 +15,235 @@ const benefits = [
   { icon: BarChart3, title: "Métricas avanzadas", description: "Analytics detallados de rendimiento" },
   { icon: Headphones, title: "Soporte prioritario", description: "Atención preferencial" },
 ];
+
+const SectionWrapper = styled.section`
+  padding: 3.5rem 0;
+  background: linear-gradient(to bottom right, #064e3b, #065f46, #064e3b);
+  position: relative;
+  overflow: hidden;
+`;
+
+const BackgroundPattern = styled.div`
+  position: absolute;
+  inset: 0;
+  opacity: 0.1;
+  background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.4'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+`;
+
+const Container = styled.div`
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 1rem;
+  position: relative;
+  z-index: 10;
+`;
+
+const Header = styled.div`
+  text-align: center;
+  margin-bottom: 2.5rem;
+`;
+
+const Title = styled.h2`
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: white;
+  margin-bottom: 0.75rem;
+  
+  @media (min-width: 768px) {
+    font-size: 2.25rem;
+  }
+`;
+
+const GradientText = styled.span`
+  background: linear-gradient(to right, #fcd34d, #f59e0b);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+`;
+
+const Subtitle = styled.p`
+  color: rgba(209, 250, 229, 0.8);
+  max-width: 42rem;
+  margin: 0 auto;
+`;
+
+const BenefitsGrid = styled.div`
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1rem;
+  max-width: 56rem;
+  margin: 0 auto 2.5rem;
+  
+  @media (min-width: 768px) {
+    grid-template-columns: repeat(3, 1fr);
+  }
+`;
+
+const BenefitCard = styled.div<{ $delay: number; $isVisible: boolean }>`
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(8px);
+  border-radius: 0.75rem;
+  padding: 1rem;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  opacity: ${props => props.$isVisible ? 1 : 0};
+  animation: ${props => props.$isVisible ? 'fadeIn 0.5s ease-out forwards' : 'none'};
+  animation-delay: ${props => props.$delay}ms;
+  transition: background 0.3s ease;
+
+  &:hover {
+    background: rgba(255, 255, 255, 0.15);
+  }
+  
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+`;
+
+const BenefitIconWrapper = styled.div`
+  width: 2.5rem;
+  height: 2.5rem;
+  background: rgba(16, 185, 129, 0.3);
+  border-radius: 0.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 0.75rem;
+`;
+
+const BenefitTitle = styled.h3`
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: white;
+  margin-bottom: 0.125rem;
+`;
+
+const BenefitDescription = styled.p`
+  color: rgba(209, 250, 229, 0.7);
+  font-size: 0.75rem;
+`;
+
+const ComparisonCard = styled.div<{ $isVisible: boolean }>`
+  max-width: 28rem;
+  margin: 0 auto 2.5rem;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(8px);
+  border-radius: 0.75rem;
+  padding: 1.5rem;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  opacity: ${props => props.$isVisible ? 1 : 0};
+  animation: ${props => props.$isVisible ? 'fadeIn 0.5s ease-out forwards' : 'none'};
+  animation-delay: 300ms;
+`;
+
+const ComparisonTitle = styled.h3`
+  text-align: center;
+  color: white;
+  font-weight: 600;
+  margin-bottom: 1rem;
+  font-size: 0.875rem;
+`;
+
+const ComparisonBars = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+`;
+
+const BarLabel = styled.div<{ $bold?: boolean }>`
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.75rem;
+  color: ${props => props.$bold ? 'white' : 'rgba(255, 255, 255, 0.8)'};
+  margin-bottom: 0.25rem;
+  
+  span:last-child {
+    color: ${props => props.$bold ? '#fcd34d' : 'inherit'};
+    font-weight: ${props => props.$bold ? '700' : '400'};
+  }
+`;
+
+const ProgressBar = styled.div`
+  height: 0.5rem;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 9999px;
+  overflow: hidden;
+`;
+
+const ProgressFill = styled.div<{ $width: string; $isVisible: boolean; $gradient?: boolean; $delay?: string }>`
+  height: 100%;
+  background: ${props => props.$gradient ? 'linear-gradient(to right, #34d399, #fbbf24)' : '#9ca3af'};
+  border-radius: 9999px;
+  width: ${props => props.$isVisible ? props.$width : '0'};
+  transition: width 1s ease-out;
+  transition-delay: ${props => props.$delay || '0ms'};
+`;
+
+const ComparisonResult = styled.p`
+  text-align: center;
+  color: #fcd34d;
+  font-weight: 700;
+  font-size: 1.125rem;
+  margin-top: 1rem;
+`;
+
+const CTAWrapper = styled.div<{ $isVisible: boolean }>`
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  justify-content: center;
+  opacity: ${props => props.$isVisible ? 1 : 0};
+  animation: ${props => props.$isVisible ? 'fadeIn 0.5s ease-out forwards' : 'none'};
+  animation-delay: 400ms;
+  
+  @media (min-width: 640px) {
+    flex-direction: row;
+  }
+`;
+
+const GradientButton = styled.a`
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.875rem 1.5rem;
+  background: linear-gradient(to right, #fbbf24, #f59e0b);
+  color: #064e3b;
+  font-weight: 700;
+  border-radius: 0.5rem;
+  text-decoration: none;
+  box-shadow: 0 4px 15px rgba(245, 158, 11, 0.3);
+  transition: all 0.3s ease;
+
+  &:hover {
+    background: linear-gradient(to right, #f59e0b, #d97706);
+    box-shadow: 0 4px 20px rgba(245, 158, 11, 0.5);
+  }
+`;
+
+const OutlineButton = styled.a`
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.875rem 1.5rem;
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  color: white;
+  font-weight: 500;
+  border-radius: 0.5rem;
+  text-decoration: none;
+  transition: background 0.2s ease;
+
+  &:hover {
+    background: rgba(255, 255, 255, 0.1);
+  }
+`;
 
 const PremiumBenefits = ({ cartUrl, whatsappUrl }: PremiumBenefitsProps) => {
   const [isVisible, setIsVisible] = useState(false);
@@ -39,107 +267,66 @@ const PremiumBenefits = ({ cartUrl, whatsappUrl }: PremiumBenefitsProps) => {
   }, []);
 
   return (
-    <section ref={sectionRef} className="py-14 bg-gradient-to-br from-emerald-900 via-emerald-800 to-emerald-900 relative overflow-hidden">
-      {/* Background pattern */}
-      <div className="absolute inset-0 opacity-10">
-        <div className="absolute inset-0" style={{ 
-          backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.4'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")` 
-        }} />
-      </div>
-
-      <div className="container mx-auto px-4 relative z-10">
-        <div className="text-center mb-10">
-          <h2 className="text-2xl md:text-4xl font-bold text-white mb-3">
-            Desbloquea tu{" "}
-            <span className="bg-gradient-to-r from-amber-300 to-amber-500 bg-clip-text text-transparent">
-              potencial
-            </span>
-          </h2>
-          <p className="text-emerald-100/80 max-w-2xl mx-auto">
+    <SectionWrapper ref={sectionRef}>
+      <BackgroundPattern />
+      <Container>
+        <Header>
+          <Title>
+            Desbloquea tu <GradientText>potencial</GradientText>
+          </Title>
+          <Subtitle>
             Con Premium, tu negocio inmobiliario alcanza otro nivel de resultados
-          </p>
-        </div>
+          </Subtitle>
+        </Header>
 
-        {/* Benefits grid */}
-        <div className="grid grid-cols-2 md:grid-cols-3 gap-4 max-w-4xl mx-auto mb-10">
+        <BenefitsGrid>
           {benefits.map((benefit, index) => (
-            <div
-              key={index}
-              className={`bg-white/10 backdrop-blur-sm rounded-xl p-4 border border-white/10 hover:bg-white/15 transition-all duration-300 ${
-                isVisible ? 'animate-fade-in' : 'opacity-0'
-              }`}
-              style={{ animationDelay: `${index * 50}ms` }}
-            >
-              <div className="w-10 h-10 bg-emerald-500/30 rounded-lg flex items-center justify-center mb-3">
-                <benefit.icon className="w-5 h-5 text-emerald-300" />
-              </div>
-              <h3 className="text-sm font-semibold text-white mb-0.5">{benefit.title}</h3>
-              <p className="text-emerald-100/70 text-xs">{benefit.description}</p>
-            </div>
+            <BenefitCard key={index} $delay={index * 50} $isVisible={isVisible}>
+              <BenefitIconWrapper>
+                <benefit.icon size={20} color="#6ee7b7" />
+              </BenefitIconWrapper>
+              <BenefitTitle>{benefit.title}</BenefitTitle>
+              <BenefitDescription>{benefit.description}</BenefitDescription>
+            </BenefitCard>
           ))}
-        </div>
+        </BenefitsGrid>
 
-        {/* Comparison */}
-        <div className={`max-w-md mx-auto mb-10 ${isVisible ? 'animate-fade-in' : 'opacity-0'}`} style={{ animationDelay: '300ms' }}>
-          <div className="bg-white/10 backdrop-blur-sm rounded-xl p-6 border border-white/10">
-            <h3 className="text-center text-white font-semibold mb-4 text-sm">Comparativa de resultados</h3>
-            <div className="space-y-3">
-              <div>
-                <div className="flex justify-between text-xs text-white/80 mb-1">
-                  <span>Visibilidad Gratuita</span>
-                  <span>25%</span>
-                </div>
-                <div className="h-2 bg-white/10 rounded-full overflow-hidden">
-                  <div 
-                    className="h-full bg-gray-400 rounded-full transition-all duration-1000"
-                    style={{ width: isVisible ? '25%' : '0%' }}
-                  />
-                </div>
-              </div>
-              <div>
-                <div className="flex justify-between text-xs text-white mb-1">
-                  <span className="font-semibold">Visibilidad Premium</span>
-                  <span className="text-amber-300 font-bold">100%</span>
-                </div>
-                <div className="h-2 bg-white/10 rounded-full overflow-hidden">
-                  <div 
-                    className="h-full bg-gradient-to-r from-emerald-400 to-amber-400 rounded-full transition-all duration-1000"
-                    style={{ width: isVisible ? '100%' : '0%', transitionDelay: '200ms' }}
-                  />
-                </div>
-              </div>
+        <ComparisonCard $isVisible={isVisible}>
+          <ComparisonTitle>Comparativa de resultados</ComparisonTitle>
+          <ComparisonBars>
+            <div>
+              <BarLabel>
+                <span>Visibilidad Gratuita</span>
+                <span>25%</span>
+              </BarLabel>
+              <ProgressBar>
+                <ProgressFill $width="25%" $isVisible={isVisible} />
+              </ProgressBar>
             </div>
-            <p className="text-center text-amber-300 font-bold text-lg mt-4">
-              4× más visibilidad
-            </p>
-          </div>
-        </div>
+            <div>
+              <BarLabel $bold>
+                <span>Visibilidad Premium</span>
+                <span>100%</span>
+              </BarLabel>
+              <ProgressBar>
+                <ProgressFill $width="100%" $isVisible={isVisible} $gradient $delay="200ms" />
+              </ProgressBar>
+            </div>
+          </ComparisonBars>
+          <ComparisonResult>4× más visibilidad</ComparisonResult>
+        </ComparisonCard>
 
-        {/* CTAs */}
-        <div className={`flex flex-col sm:flex-row gap-3 justify-center ${isVisible ? 'animate-fade-in' : 'opacity-0'}`} style={{ animationDelay: '400ms' }}>
-          <Button
-            asChild
-            size="lg"
-            className="bg-gradient-to-r from-amber-400 to-amber-500 hover:from-amber-500 hover:to-amber-600 text-emerald-900 font-bold px-6 py-5 shadow-lg shadow-amber-500/30 hover:shadow-amber-500/50 transition-all duration-300"
-          >
-            <a href={cartUrl} target="_blank" rel="noopener noreferrer">
-              Ver planes y precios
-            </a>
-          </Button>
-          <Button
-            asChild
-            size="lg"
-            variant="outline"
-            className="border-white/30 text-white hover:bg-white/10 px-6 py-5"
-          >
-            <a href={whatsappUrl} target="_blank" rel="noopener noreferrer">
-              <WhatsAppIcon className="w-4 h-4 mr-2" />
-              Contactar por WhatsApp
-            </a>
-          </Button>
-        </div>
-      </div>
-    </section>
+        <CTAWrapper $isVisible={isVisible}>
+          <GradientButton href={cartUrl} target="_blank" rel="noopener noreferrer">
+            Ver planes y precios
+          </GradientButton>
+          <OutlineButton href={whatsappUrl} target="_blank" rel="noopener noreferrer">
+            <MessageCircle size={16} />
+            Contactar por WhatsApp
+          </OutlineButton>
+        </CTAWrapper>
+      </Container>
+    </SectionWrapper>
   );
 };
 
