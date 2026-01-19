@@ -7,7 +7,7 @@ interface PremiumPlansSectionProps {
 }
 
 const features = [
-  { name: "Publicar inmuebles", free: true, pro: true, proPlus: true },
+  { name: "Publicar propiedades", free: true, pro: true, proPlus: true },
   { name: "Editar anuncios en cualquier momento", free: true, pro: true, proPlus: true },
   { name: "Anuncios siempre visibles", free: false, pro: true, proPlus: true },
   { name: "Sin pausas de 30 días", free: false, pro: true, proPlus: true },

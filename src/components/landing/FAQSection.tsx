@@ -10,7 +10,7 @@ const faqCategories = [
     faqs: [
       {
         question: "¿Cómo funciona la publicación gratuita?",
-        answer: "Puedes publicar inmuebles sin costo. Cada propiedad activa consume leads de tu bolsa gratuita cuando recibes contactos. Tus anuncios permanecen publicados y editables incluso cuando están pausados.",
+        answer: "Puedes publicar propiedades sin costo. Cada propiedad activa consume leads de tu bolsa gratuita cuando recibes contactos. Tus anuncios permanecen publicados y editables incluso cuando están pausados.",
       },
       {
         question: "¿Qué es un lead único?",
