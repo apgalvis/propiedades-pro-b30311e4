@@ -209,6 +209,14 @@ const ComparisonResult = styled.p`
   margin-top: 1rem;
 `;
 
+const Microcopy = styled.p`
+  text-align: center;
+  color: rgba(209, 250, 229, 0.6);
+  font-size: 0.625rem;
+  margin-top: 0.75rem;
+  font-style: italic;
+`;
+
 const CTAWrapper = styled.div<{ $isVisible: boolean }>`
   display: flex;
   flex-direction: column;
@@ -311,28 +319,27 @@ const PremiumBenefits = ({ cartUrl, whatsappUrl }: PremiumBenefitsProps) => {
         </BenefitsGrid>
 
         <ComparisonCard $isVisible={isVisible}>
-          <ComparisonTitle>Comparativa de resultados</ComparisonTitle>
+          <ComparisonTitle>Comparativa de niveles de visibilidad</ComparisonTitle>
           <ComparisonBars>
             <div>
               <BarLabel>
-                <span>Visibilidad Gratuita</span>
-                <span>25%</span>
+                <span>Visibilidad versión gratuita</span>
               </BarLabel>
               <ProgressBar>
-                <ProgressFill $width="25%" $isVisible={isVisible} />
+                <ProgressFill $width="20%" $isVisible={isVisible} />
               </ProgressBar>
             </div>
             <div>
               <BarLabel $bold>
-                <span>Visibilidad Premium</span>
-                <span>100%</span>
+                <span>Visibilidad Pro / ProMax</span>
               </BarLabel>
               <ProgressBar>
                 <ProgressFill $width="100%" $isVisible={isVisible} $gradient $delay="200ms" />
               </ProgressBar>
             </div>
           </ComparisonBars>
-          <ComparisonResult>4× más visibilidad</ComparisonResult>
+          <ComparisonResult>Mayor visibilidad frente a la versión gratuita</ComparisonResult>
+          <Microcopy>La visibilidad puede variar según zona, categoría y demanda del mercado.</Microcopy>
         </ComparisonCard>
 
         <CTAWrapper $isVisible={isVisible}>
