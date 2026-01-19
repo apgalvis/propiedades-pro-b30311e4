@@ -333,11 +333,11 @@ const PremiumPlansSection = ({ cartUrl, whatsappUrl }: PremiumPlansSectionProps)
           </PlanCard>
 
           <PlanCard $variant="premium">
-            <PopularBadge>POPULAR</PopularBadge>
+            <PopularBadge>RECOMENDADO</PopularBadge>
             <PlanIconWrapper $variant="premium">
               <Shield size={24} color="#6ee7b7" />
             </PlanIconWrapper>
-            <PlanTitle $light>ProMax</PlanTitle>
+            <PlanTitle $light>Plan ProMax</PlanTitle>
             <PlanSubtitle $variant="premium">Máxima exposición en búsquedas</PlanSubtitle>
             <ProgressBar $variant="premium">
               <ProgressFill $width="100%" $variant="premium" />
@@ -351,7 +351,7 @@ const PremiumPlansSection = ({ cartUrl, whatsappUrl }: PremiumPlansSectionProps)
             <TableHeaderCell>Característica</TableHeaderCell>
             <TableHeaderCell>Gratis</TableHeaderCell>
             <TableHeaderCell $highlight>Pro</TableHeaderCell>
-            <TableHeaderCell $highlight>ProMax</TableHeaderCell>
+            <TableHeaderCell $highlight>Plan ProMax</TableHeaderCell>
           </TableHeader>
           
           {features.map((feature, index) => (
