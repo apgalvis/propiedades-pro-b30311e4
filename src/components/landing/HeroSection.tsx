@@ -223,7 +223,7 @@ const HeroSection = ({ cartUrl, whatsappUrl }: HeroSectionProps) => {
         </HeroTitle>
 
         <Subtitle>
-          Con el Plan Pro tu inmueble no se pausa y mantiene visibilidad continua.
+          Con el Plan Pro tu propiedad no se pausa y mantiene visibilidad continua.
         </Subtitle>
 
         <CTAWrapper>

@@ -5,32 +5,32 @@ import { useEffect, useRef, useState } from "react";
 const steps = [
   {
     icon: Upload,
-    title: "Publica tu inmueble",
+    title: "Publica gratis tu propiedad",
     description: "Sube tus propiedades sin límite. Siempre editables.",
     color: "#10b981",
   },
   {
     icon: Eye,
-    title: "Activa la visibilidad",
-    description: "Tu propiedad se muestra y consume leads de tu bolsa gratuita.",
+    title: "Activación automática de la versión gratuita",
+    description: "Al publicar, tu anuncio entra automáticamente en la versión gratuita y comienza a consumir de la bolsa gratuita de leads.",
     color: "#059669",
   },
   {
     icon: CheckCircle,
-    title: "Recibe contactos verificados",
-    description: "Leads únicos y verificados llegan directo a ti.",
+    title: "Recibe contactos según disponibilidad",
+    description: "Recibes contactos mientras tengas disponibilidad en tu bolsa gratuita de consumo.",
     color: "#047857",
   },
   {
     icon: PauseCircle,
-    title: "Pausa de 30 días",
-    description: "Cuando se agota la bolsa, pausa temporal. Se recarga automáticamente.",
+    title: "Pausa cíclica de 30 días",
+    description: "Al agotarse la bolsa gratuita, el anuncio entra en una pausa temporal de 30 días. El ciclo se reactiva automáticamente.",
     color: "#6b7280",
   },
   {
     icon: TrendingUp,
-    title: "Escala si quieres",
-    description: "Con el Plan Pro estarás siempre visible, sin pausas.",
+    title: "Cambia a Plan Pro",
+    description: "Mantén tu anuncio activo con visibilidad continua y sin pausas.",
     color: "#10b981",
   },
 ];
@@ -282,7 +282,7 @@ const HowItWorksSection = () => {
         </StepsContainer>
 
         <Note>
-          💡 Durante la pausa, tus propiedades siguen editables y listas para reactivarse cuando tu bolsa se recargue.
+          💡 Durante la pausa, tus propiedades siguen editables y listas para reactivarse en el siguiente ciclo.
         </Note>
       </Container>
     </SectionWrapper>
