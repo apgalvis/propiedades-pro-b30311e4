@@ -53,7 +53,7 @@ const BannerButton = styled.a`
   gap: 0.375rem;
   padding: 0.5rem 1rem;
   min-height: 36px;
-  background: #10b981;
+  background: #047857;
   color: white;
   font-size: 0.9375rem;
   font-weight: 600;
@@ -62,7 +62,7 @@ const BannerButton = styled.a`
   transition: all 0.2s ease-out;
 
   &:hover {
-    background: #34d399;
+    background: #065f46;
   }
 `;
 
