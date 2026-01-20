@@ -278,18 +278,18 @@ const PrimaryButton = styled.a`
   gap: 0.5rem;
   padding: 0.875rem 2rem;
   min-height: 48px;
-  background: #10b981;
+  background: #047857;
   color: white;
   font-weight: 600;
   font-size: 1rem;
   border-radius: 100px;
   text-decoration: none;
-  box-shadow: 0 4px 15px rgba(16, 185, 129, 0.3);
+  box-shadow: 0 4px 12px rgba(4, 120, 87, 0.25);
   transition: all 0.2s ease-out;
 
   &:hover {
-    background: #059669;
-    box-shadow: 0 4px 20px rgba(16, 185, 129, 0.5);
+    background: #065f46;
+    box-shadow: 0 4px 16px rgba(4, 120, 87, 0.35);
     transform: translateY(-2px);
   }
 `;
