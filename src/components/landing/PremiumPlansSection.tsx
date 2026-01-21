@@ -329,7 +329,7 @@ const PremiumPlansSection = ({ cartUrl, whatsappUrl }: PremiumPlansSectionProps)
       <Container>
         <Header>
           <Title>
-            Compara y elige tu <Highlight>nivel de visibilidad</Highlight>
+            Compara y elige el <Highlight>nivel de visibilidad</Highlight> de tu anuncio
           </Title>
           <Subtitle>
             De publicación gratuita a visibilidad continua y máxima exposición
@@ -341,7 +341,7 @@ const PremiumPlansSection = ({ cartUrl, whatsappUrl }: PremiumPlansSectionProps)
             <PlanIconWrapper>
               <Eye size={24} color="#6b7280" />
             </PlanIconWrapper>
-            <PlanTitle>Gratis</PlanTitle>
+            <PlanTitle>Plan Gratis</PlanTitle>
             <PlanSubtitle>Publicación básica</PlanSubtitle>
             <ProgressBar>
               <ProgressFill $width="25%" />
@@ -354,7 +354,7 @@ const PremiumPlansSection = ({ cartUrl, whatsappUrl }: PremiumPlansSectionProps)
               <Crown size={24} color="#059669" />
             </PlanIconWrapper>
             <PlanTitle>Plan Pro</PlanTitle>
-            <PlanSubtitle $variant="pro">Visibilidad continua, sin pausas</PlanSubtitle>
+            <PlanSubtitle $variant="pro">Visibilidad continua del anuncio, sin pausas</PlanSubtitle>
             <ProgressBar $variant="pro">
               <ProgressFill $width="65%" $variant="pro" />
             </ProgressBar>
@@ -367,7 +367,7 @@ const PremiumPlansSection = ({ cartUrl, whatsappUrl }: PremiumPlansSectionProps)
               <Shield size={24} color="#6ee7b7" />
             </PlanIconWrapper>
             <PlanTitle $light>Plan ProMax</PlanTitle>
-            <PlanSubtitle $variant="premium">Máxima exposición en búsquedas</PlanSubtitle>
+            <PlanSubtitle $variant="premium">Máxima visibilidad del anuncio en búsquedas</PlanSubtitle>
             <ProgressBar $variant="premium">
               <ProgressFill $width="100%" $variant="premium" />
             </ProgressBar>
