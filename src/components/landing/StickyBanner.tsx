@@ -80,8 +80,8 @@ const StickyBanner = ({ cartUrl }: StickyBannerProps) => {
     <BannerWrapper>
       <BannerContent>
         <div>
-          <DesktopText>Pasa a visibilidad continua hoy</DesktopText>
-          <MobileText>Visibilidad continua</MobileText>
+          <DesktopText>Pasa a leads ilimitados hoy</DesktopText>
+          <MobileText>Leads ilimitados</MobileText>
         </div>
         <BannerButton href={cartUrl} target="_blank" rel="noopener noreferrer">
           <ShoppingCart size={16} />
