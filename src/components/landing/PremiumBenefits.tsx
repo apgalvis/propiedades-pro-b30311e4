@@ -139,7 +139,7 @@ const BenefitTitle = styled.h3`
 `;
 
 const GiftBadge = styled.span`
-  background: linear-gradient(135deg, #14b8a6, #0d9488);
+  background: linear-gradient(135deg, #f97316, #ea580c);
   color: white;
   font-size: 0.6875rem;
   font-weight: 700;
