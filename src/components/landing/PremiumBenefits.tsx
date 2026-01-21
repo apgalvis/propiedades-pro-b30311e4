@@ -8,12 +8,12 @@ interface PremiumBenefitsProps {
 }
 
 const benefits = [
-  { icon: Infinity, title: "Contactos sin tope mensual", description: "Sin límite mensual de recepción por visibilidad activa." },
-  { icon: Eye, title: "Visibilidad continua", description: "Tu anuncio permanece activo sin pausas ni interrupciones." },
-  { icon: Trophy, title: "Destacados incluidos", description: "Prioridad visual adicional en resultados de búsqueda." },
-  { icon: Smartphone, title: "Contacto por WhatsApp sin tope", description: "Recepción continua de contactos por WhatsApp.", isGift: true },
-  { icon: BarChart3, title: "Métricas avanzadas", description: "Indicadores de visibilidad y rendimiento del anuncio." },
-  { icon: Headphones, title: "Soporte prioritario", description: "Atención preferencial para cuentas ProMax." },
+  { icon: Infinity, title: "Leads ilimitados", description: "Olvida las restricciones; recibe el 100% de los interesados que generen tus anuncios." },
+  { icon: Eye, title: "Visibilidad continua", description: "Tu anuncio permanece activo sin pausas ni interrupciones del plan gratuito." },
+  { icon: Trophy, title: "Destacados incluidos", description: "Gana prioridad visual y aparece antes que la competencia en los resultados.", hasDiscount: true },
+  { icon: Smartphone, title: "WhatsApp sin límites", description: "Acelera el cierre conectando directo con tus interesados.", isGift: true },
+  { icon: BarChart3, title: "Métricas avanzadas", description: "Recibe indicadores de visibilidad y rendimiento del anuncio." },
+  { icon: Headphones, title: "Atención preferente", description: "Atención preferencial para cuentas ProMax." },
 ];
 
 const SectionWrapper = styled.section`
@@ -141,6 +141,15 @@ const BenefitTitle = styled.h3`
 const GiftBadge = styled.span`
   background: linear-gradient(135deg, #fbbf24, #f59e0b);
   color: #064e3b;
+  font-size: 0.6875rem;
+  font-weight: 700;
+  padding: 0.25rem 0.5rem;
+  border-radius: 9999px;
+`;
+
+const DiscountBadge = styled.span`
+  background: linear-gradient(135deg, #ec4899, #db2777);
+  color: white;
   font-size: 0.6875rem;
   font-weight: 700;
   padding: 0.25rem 0.5rem;
@@ -354,7 +363,7 @@ const PremiumBenefits = ({ cartUrl, whatsappUrl }: PremiumBenefitsProps) => {
       <Container>
         <Header>
           <Title>
-            Desbloquea <GradientText>máxima exposición</GradientText>
+            Desbloquea <GradientText>máxima exposición</GradientText> con Plan ProMax
           </Title>
           <Subtitle>
             Con ProMax, tu anuncio accede al nivel más alto de visibilidad disponible
@@ -369,6 +378,7 @@ const PremiumBenefits = ({ cartUrl, whatsappUrl }: PremiumBenefitsProps) => {
               </BenefitIconWrapper>
               <BenefitTitleWrapper>
                 <BenefitTitle>{benefit.title}</BenefitTitle>
+                {'hasDiscount' in benefit && benefit.hasDiscount && <DiscountBadge>🏷️ Descuento especial</DiscountBadge>}
                 {'isGift' in benefit && benefit.isGift && <GiftBadge>🎁 Regalo</GiftBadge>}
               </BenefitTitleWrapper>
               <BenefitDescription>{benefit.description}</BenefitDescription>
