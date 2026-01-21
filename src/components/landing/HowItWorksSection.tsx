@@ -5,7 +5,7 @@ import { useEffect, useRef, useState } from "react";
 const steps = [
   {
     icon: Upload,
-    title: "Publica gratis tu propiedad",
+    title: "Publica gratis",
     description: "Sube tus propiedades sin límite. Siempre editables.",
     color: "#10b981",
   },
