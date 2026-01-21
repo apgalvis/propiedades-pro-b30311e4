@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { Infinity, Eye, Trophy, Smartphone, BarChart3, Headphones, ShoppingCart } from "lucide-react";
+import { Infinity, Eye, Trophy, Smartphone, BarChart3, Headphones, ShoppingCart, Gem } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 
 interface PremiumBenefitsProps {
@@ -363,10 +363,10 @@ const PremiumBenefits = ({ cartUrl, whatsappUrl }: PremiumBenefitsProps) => {
       <Container>
         <Header>
           <Title>
-            Desbloquea <GradientText>máxima exposición</GradientText> con Plan ProMax
+            Desbloquea <GradientText>máxima exposición</GradientText> con ProMax <Gem size={28} color="#fcd34d" style={{ display: 'inline', verticalAlign: 'middle', marginLeft: '0.25rem' }} />
           </Title>
           <Subtitle>
-            Con ProMax, tu anuncio accede al nivel más alto de visibilidad disponible
+            Tu anuncio accede al nivel más alto de visibilidad disponible
           </Subtitle>
         </Header>
 
