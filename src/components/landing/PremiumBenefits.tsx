@@ -148,7 +148,7 @@ const GiftBadge = styled.span`
 `;
 
 const DiscountBadge = styled.span`
-  background: linear-gradient(135deg, #ec4899, #db2777);
+  background: linear-gradient(135deg, #ef4444, #dc2626);
   color: white;
   font-size: 0.6875rem;
   font-weight: 700;
