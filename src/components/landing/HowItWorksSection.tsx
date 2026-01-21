@@ -36,11 +36,11 @@ const steps = [
 ];
 
 const SectionWrapper = styled.section`
-  padding: 4rem 0;
+  padding: 3rem 0;
   background: linear-gradient(to bottom, #f9fafb, #ffffff);
   
   @media (min-width: 768px) {
-    padding: 6rem 0;
+    padding: 4rem 0;
   }
 `;
 
@@ -52,10 +52,10 @@ const Container = styled.div`
 
 const Header = styled.div`
   text-align: center;
-  margin-bottom: 3rem;
+  margin-bottom: 2rem;
   
   @media (min-width: 768px) {
-    margin-bottom: 4rem;
+    margin-bottom: 2.5rem;
   }
 `;
 
@@ -123,7 +123,7 @@ const ConnectingLine = styled.div<{ $isVisible: boolean }>`
 const StepsWrapper = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 1.5rem;
+  gap: 1rem;
   
   @media (min-width: 768px) {
     gap: 0;
@@ -156,14 +156,14 @@ const StepContent = styled.div<{ $index: number }>`
 
 const StepCard = styled.div`
   background: white;
-  padding: 1.5rem;
-  border-radius: 0.875rem;
-  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+  padding: 1rem 1.25rem;
+  border-radius: 0.75rem;
+  box-shadow: 0 2px 4px -1px rgba(0, 0, 0, 0.08);
   border: 1px solid #f3f4f6;
   transition: box-shadow 0.2s ease-out;
   
   &:hover {
-    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 6px 12px -3px rgba(0, 0, 0, 0.1);
   }
 `;
 
@@ -230,7 +230,7 @@ const Note = styled.p`
   font-size: 0.8125rem;
   color: #6b7280;
   line-height: 1.5;
-  margin-top: 2.5rem;
+  margin-top: 1.5rem;
   max-width: 36rem;
   margin-left: auto;
   margin-right: auto;
