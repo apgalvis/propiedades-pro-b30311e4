@@ -366,7 +366,7 @@ const PremiumBenefits = ({ cartUrl, whatsappUrl }: PremiumBenefitsProps) => {
             Desbloquea <GradientText>máxima exposición</GradientText> con ProMax <Gem size={28} color="#fcd34d" style={{ display: 'inline', verticalAlign: 'middle', marginLeft: '0.25rem' }} />
           </Title>
           <Subtitle>
-            Tu anuncio accede al nivel más alto de visibilidad disponible
+            Tu anuncio combina visibilidad continua con prioridad en resultados de búsqueda
           </Subtitle>
         </Header>
 
