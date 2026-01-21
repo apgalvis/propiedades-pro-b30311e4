@@ -231,10 +231,10 @@ const HeroSection = ({ cartUrl, whatsappUrl }: HeroSectionProps) => {
       <HeroContent>
         <HeroTitle>
           <TitleLine>
-            Convierte tu anuncio en una <HighlightGreen>
-              fuente constante
+            Toma el control total de tu visibilidad con <HighlightGreen>
+              Leads Ilimitados
               <Underline />
-            </HighlightGreen> de contactos
+            </HighlightGreen>
           </TitleLine>
         </HeroTitle>
 
