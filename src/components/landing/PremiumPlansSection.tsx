@@ -358,7 +358,7 @@ const PremiumPlansSection = ({ cartUrl, whatsappUrl }: PremiumPlansSectionProps)
             <ProgressBar $variant="pro">
               <ProgressFill $width="65%" $variant="pro" />
             </ProgressBar>
-            <ProgressLabel $variant="pro">Nivel recomendado para mantener tu anuncio activo</ProgressLabel>
+            <ProgressLabel $variant="pro">Leads ilimitados</ProgressLabel>
           </PlanCard>
 
           <PlanCard $variant="premium">
