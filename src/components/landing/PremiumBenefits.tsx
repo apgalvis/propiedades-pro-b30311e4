@@ -17,13 +17,13 @@ const benefits = [
 ];
 
 const SectionWrapper = styled.section`
-  padding: 4rem 0;
+  padding: 3rem 0;
   background: linear-gradient(to bottom right, #064e3b, #065f46, #064e3b);
   position: relative;
   overflow: hidden;
   
   @media (min-width: 768px) {
-    padding: 6rem 0;
+    padding: 4rem 0;
   }
 `;
 
@@ -44,10 +44,10 @@ const Container = styled.div`
 
 const Header = styled.div`
   text-align: center;
-  margin-bottom: 3rem;
+  margin-bottom: 2rem;
   
   @media (min-width: 768px) {
-    margin-bottom: 4rem;
+    margin-bottom: 2.5rem;
   }
 `;
 
@@ -86,21 +86,21 @@ const Subtitle = styled.p`
 const BenefitsGrid = styled.div`
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  gap: 1.25rem;
+  gap: 1rem;
   max-width: 56rem;
-  margin: 0 auto 3rem;
+  margin: 0 auto 2rem;
   
   @media (min-width: 768px) {
     grid-template-columns: repeat(3, 1fr);
-    margin-bottom: 4rem;
+    margin-bottom: 2.5rem;
   }
 `;
 
 const BenefitCard = styled.div<{ $delay: number; $isVisible: boolean }>`
   background: rgba(255, 255, 255, 0.1);
   backdrop-filter: blur(8px);
-  border-radius: 1rem;
-  padding: 1.5rem;
+  border-radius: 0.875rem;
+  padding: 1.25rem;
   border: 1px solid rgba(255, 255, 255, 0.1);
   opacity: ${props => props.$isVisible ? 1 : 0};
   transform: ${props => props.$isVisible ? 'translateY(0)' : 'translateY(10px)'};
@@ -113,14 +113,14 @@ const BenefitCard = styled.div<{ $delay: number; $isVisible: boolean }>`
 `;
 
 const BenefitIconWrapper = styled.div`
-  width: 2.75rem;
-  height: 2.75rem;
+  width: 2.5rem;
+  height: 2.5rem;
   background: rgba(16, 185, 129, 0.3);
-  border-radius: 0.625rem;
+  border-radius: 0.5rem;
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-bottom: 1rem;
+  margin-bottom: 0.75rem;
 `;
 
 const BenefitTitleWrapper = styled.div`
@@ -164,11 +164,11 @@ const BenefitDescription = styled.p`
 
 const ComparisonCard = styled.div<{ $isVisible: boolean }>`
   max-width: 28rem;
-  margin: 0 auto 3rem;
+  margin: 0 auto 2rem;
   background: rgba(255, 255, 255, 0.1);
   backdrop-filter: blur(8px);
-  border-radius: 1rem;
-  padding: 2rem;
+  border-radius: 0.875rem;
+  padding: 1.5rem;
   border: 1px solid rgba(255, 255, 255, 0.1);
   opacity: ${props => props.$isVisible ? 1 : 0};
   transform: ${props => props.$isVisible ? 'translateY(0)' : 'translateY(10px)'};
@@ -176,7 +176,7 @@ const ComparisonCard = styled.div<{ $isVisible: boolean }>`
   transition-delay: 200ms;
   
   @media (min-width: 768px) {
-    margin-bottom: 4rem;
+    margin-bottom: 2.5rem;
   }
 `;
 
