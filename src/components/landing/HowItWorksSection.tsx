@@ -1,46 +1,46 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 import { Upload, Eye, CheckCircle, PauseCircle, TrendingUp } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 
 const steps = [
   {
     icon: Upload,
-    title: "Publica gratis",
-    description: "Sube tus propiedades sin límite. Siempre editables.",
+    title: "Publica",
+    description: "Sube tus propiedades gratis y sin límites. Son siempre editables.",
     color: "#10b981",
   },
   {
     icon: Eye,
-    title: "Activación automática de la versión gratuita",
-    description: "Al publicar, tu anuncio entra automáticamente en la versión gratuita y comienza a consumir de la bolsa gratuita de leads.",
+    title: "Activación automática",
+    description: "Tu anuncio entra automáticamente al sistema e inicia a consumir de tu bolsa de leads gratuitos.",
     color: "#059669",
   },
   {
     icon: CheckCircle,
-    title: "Recibe contactos según disponibilidad",
-    description: "Recibes contactos mientras tengas disponibilidad en tu bolsa gratuita de consumo.",
+    title: "Recibe leads",
+    description: "Obtén contactos potenciales, hasta agotar la disponibilidad en tu cuenta.",
     color: "#047857",
   },
   {
     icon: PauseCircle,
     title: "Pausa cíclica de 30 días",
-    description: "Al agotarse la bolsa gratuita, el anuncio entra en una pausa temporal de 30 días. El ciclo se reactiva automáticamente.",
+    description: "Al terminarse el saldo, la visibilidad se detiene por 30 días hasta recargarse.",
     color: "#6b7280",
   },
   {
     icon: TrendingUp,
     title: "Cambia a Plan Pro",
-    description: "Mantén tu anuncio activo con visibilidad continua y sin pausas.",
+    description: "Elimina los tiempos de espera y mantén exposición continua con el Plan Pro.",
     color: "#10b981",
   },
 ];
 
 const SectionWrapper = styled.section`
-  padding: 3rem 0;
+  padding: 4rem 0;
   background: linear-gradient(to bottom, #f9fafb, #ffffff);
   
   @media (min-width: 768px) {
-    padding: 4rem 0;
+    padding: 6rem 0;
   }
 `;
 
@@ -52,10 +52,10 @@ const Container = styled.div`
 
 const Header = styled.div`
   text-align: center;
-  margin-bottom: 2rem;
+  margin-bottom: 3rem;
   
   @media (min-width: 768px) {
-    margin-bottom: 2.5rem;
+    margin-bottom: 4rem;
   }
 `;
 
@@ -115,7 +115,7 @@ const ConnectingLine = styled.div<{ $isVisible: boolean }>`
     left: 0;
     width: 100%;
     background: #10b981;
-    height: ${props => props.$isVisible ? '100%' : '0'};
+    height: ${(props) => (props.$isVisible ? "100%" : "0")};
     transition: height 0.8s ease-out;
   }
 `;
@@ -123,7 +123,7 @@ const ConnectingLine = styled.div<{ $isVisible: boolean }>`
 const StepsWrapper = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 1rem;
+  gap: 1.5rem;
   
   @media (min-width: 768px) {
     gap: 0;
@@ -135,14 +135,14 @@ const StepItem = styled.div<{ $index: number; $isVisible: boolean }>`
   display: flex;
   align-items: center;
   gap: 1rem;
-  opacity: ${props => props.$isVisible ? 1 : 0};
-  transform: ${props => props.$isVisible ? 'translateY(0)' : 'translateY(10px)'};
+  opacity: ${(props) => (props.$isVisible ? 1 : 0)};
+  transform: ${(props) => (props.$isVisible ? "translateY(0)" : "translateY(10px)")};
   transition: opacity 0.3s ease-out, transform 0.3s ease-out;
-  transition-delay: ${props => Math.min(props.$index * 80, 320)}ms;
+  transition-delay: ${(props) => Math.min(props.$index * 80, 320)}ms;
   
   @media (min-width: 768px) {
     gap: 2rem;
-    flex-direction: ${props => props.$index % 2 === 0 ? 'row' : 'row-reverse'};
+    flex-direction: ${(props) => (props.$index % 2 === 0 ? "row" : "row-reverse")};
   }
 `;
 
@@ -150,20 +150,20 @@ const StepContent = styled.div<{ $index: number }>`
   flex: 1;
   
   @media (min-width: 768px) {
-    text-align: ${props => props.$index % 2 === 0 ? 'right' : 'left'};
+    text-align: ${(props) => (props.$index % 2 === 0 ? "right" : "left")};
   }
 `;
 
 const StepCard = styled.div`
   background: white;
-  padding: 1rem 1.25rem;
-  border-radius: 0.75rem;
-  box-shadow: 0 2px 4px -1px rgba(0, 0, 0, 0.08);
+  padding: 1.5rem;
+  border-radius: 0.875rem;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
   border: 1px solid #f3f4f6;
   transition: box-shadow 0.2s ease-out;
   
   &:hover {
-    box-shadow: 0 6px 12px -3px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
   }
 `;
 
@@ -191,7 +191,7 @@ const IconContainer = styled.div<{ $color: string }>`
   flex-shrink: 0;
   width: 3.5rem;
   height: 3.5rem;
-  background: ${props => props.$color};
+  background: ${(props) => props.$color};
   border-radius: 9999px;
   display: flex;
   align-items: center;
@@ -230,7 +230,7 @@ const Note = styled.p`
   font-size: 0.8125rem;
   color: #6b7280;
   line-height: 1.5;
-  margin-top: 1.5rem;
+  margin-top: 2.5rem;
   max-width: 36rem;
   margin-left: auto;
   margin-right: auto;
@@ -247,7 +247,7 @@ const HowItWorksSection = () => {
           setIsVisible(true);
         }
       },
-      { threshold: 0.2 }
+      { threshold: 0.2 },
     );
 
     if (sectionRef.current) {
@@ -264,9 +264,7 @@ const HowItWorksSection = () => {
           <Title>
             ¿Cómo funciona la versión <Highlight>gratuita</Highlight>?
           </Title>
-          <Subtitle>
-            Un modelo transparente que te permite comenzar sin inversión inicial
-          </Subtitle>
+          <Subtitle>Un modelo transparente que te permite comenzar sin inversión inicial</Subtitle>
         </Header>
 
         <StepsContainer>
