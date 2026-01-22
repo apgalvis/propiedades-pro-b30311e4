@@ -10,9 +10,9 @@ const features = [
   { name: "Publicar propiedades", free: true, pro: true, proPlus: true },
   { name: "Editar anuncios en cualquier momento", free: true, pro: true, proPlus: true },
   { name: "Visibilidad continua del anuncio", free: false, pro: true, proPlus: true },
-  { name: "Sin pausas de 30 días del ciclo gratuito", free: false, pro: true, proPlus: true },
-  { name: "Contactos por correo y panel de anunciantes sin tope mensual", free: false, pro: true, proPlus: true },
-  { name: "Contactos por WhatsApp sin tope mensual", free: false, pro: true, proPlus: true, highlight: true },
+  { name: "Entrega de leads sin pausas", free: false, pro: true, proPlus: true },
+  { name: "Recibe tus contactos multicanal", free: false, pro: true, proPlus: true },
+  { name: "Recibe todos tus contactos por WhatsApp", free: false, pro: true, proPlus: true, highlight: true },
   { name: "Destacados incluidos (solo ProMax)", free: false, pro: false, proPlus: true },
   { name: "Prioridad visual en resultados de búsqueda", free: false, pro: false, proPlus: true },
 ];
