@@ -184,10 +184,10 @@ const FinalCTA = ({ cartUrl, whatsappUrl }: FinalCTAProps) => {
       <Container>
         <Content>
           <Title>
-            ¿Listo para pasar a <Highlight>visibilidad continua</Highlight>?
+            ¿Listo para tomar el control de la <Highlight>visibilidad de tus anuncios</Highlight>?
           </Title>
           <Subtitle>
-            Con el Plan Pro, tu anuncio permanece activo y visible, facilitando la recepción continua de contactos.
+            Leads Ilimitados en Plan Pro significan que tu anuncio no se pausa y conserva su visibilidad activa.
           </Subtitle>
 
           <CTAWrapper>
