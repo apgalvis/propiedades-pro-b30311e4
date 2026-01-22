@@ -38,18 +38,18 @@ const Content = styled.div`
   text-align: center;
 `;
 
-const Title = styled.h1`
+const Title = styled.h2`
   font-family: 'Montserrat', sans-serif;
-  font-size: 2.125rem;
+  font-size: 1.625rem;
   font-weight: 700;
   color: white;
-  line-height: 1.1;
-  margin-bottom: 1.25rem;
+  line-height: 1.25;
+  margin-bottom: 1rem;
   opacity: 0;
   animation: fadeSlideIn 0.3s ease-out forwards;
   
   @media (min-width: 768px) {
-    font-size: 3.5rem;
+    font-size: 2.25rem;
   }
   
   @keyframes fadeSlideIn {
