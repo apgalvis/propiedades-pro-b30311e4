@@ -8,15 +8,15 @@ interface PricingTableSectionProps {
 }
 
 const pricingTiers = [
-  { properties: "Hasta 10", leads: "3", price: "$499", costPerPub: "$50" },
-  { properties: "Hasta 40", leads: "3 a 5", price: "$1,749", costPerPub: "$44" },
-  { properties: "Hasta 80", leads: "5 a 7", price: "$2,599", costPerPub: "$32", highlighted: true },
-  { properties: "Hasta 140", leads: "7 a 10", price: "$4,299", costPerPub: "$31" },
+  { properties: "1 – 10", leads: "3", price: "$499", costPerPub: "$50" },
+  { properties: "11 – 40", leads: "3 a 5", price: "$1,749", costPerPub: "$44" },
+  { properties: "41 – 80", leads: "5 a 7", price: "$2,599", costPerPub: "$32", highlighted: true },
+  { properties: "81 – 140", leads: "7 a 10", price: "$4,299", costPerPub: "$31" },
 ];
 
 const SectionWrapper = styled.section`
   padding: 3rem 0;
-  background: linear-gradient(to bottom, #f0fdf4, #ecfdf5);
+  background: linear-gradient(to bottom, #f3f4f6, #e5e7eb);
   
   @media (min-width: 768px) {
     padding: 4rem 0;
@@ -286,7 +286,7 @@ const PricingTableSection = ({ cartUrl, whatsappUrl }: PricingTableSectionProps)
         <TableWrapper $isVisible={isVisible}>
           <TableHead>
             <TableHeadCell>Cantidad Propiedades</TableHeadCell>
-            <TableHeadCell>Leads gratuitos incluidos</TableHeadCell>
+            <TableHeadCell>Leads en versión gratuita</TableHeadCell>
             <TableHeadCell>Precio mensual + IVA desde*</TableHeadCell>
             <TableHeadCell>Costo por publicación + IVA</TableHeadCell>
           </TableHead>
