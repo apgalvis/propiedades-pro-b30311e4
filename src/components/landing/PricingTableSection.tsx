@@ -15,11 +15,11 @@ const pricingTiers = [
 ];
 
 const SectionWrapper = styled.section`
-  padding: 4rem 0;
+  padding: 3rem 0;
   background: linear-gradient(to bottom, #f9fafb, #ffffff);
   
   @media (min-width: 768px) {
-    padding: 6rem 0;
+    padding: 4rem 0;
   }
 `;
 
@@ -31,10 +31,10 @@ const Container = styled.div`
 
 const Header = styled.div`
   text-align: center;
-  margin-bottom: 2rem;
+  margin-bottom: 1.5rem;
   
   @media (min-width: 768px) {
-    margin-bottom: 3rem;
+    margin-bottom: 2rem;
   }
 `;
 
@@ -44,7 +44,7 @@ const Title = styled.h2`
   font-weight: 700;
   color: #111827;
   line-height: 1.25;
-  margin-bottom: 1rem;
+  margin-bottom: 0.5rem;
   
   @media (min-width: 768px) {
     font-size: 2.25rem;
@@ -73,13 +73,13 @@ const BoldText = styled.span`
 `;
 
 const TableWrapper = styled.div<{ $isVisible: boolean }>`
-  max-width: 52rem;
-  margin: 0 auto 2rem;
+  max-width: 48rem;
+  margin: 0 auto 1.5rem;
   background: white;
-  border-radius: 1rem;
+  border-radius: 0.875rem;
   border: 1px solid #e5e7eb;
   overflow: hidden;
-  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+  box-shadow: 0 2px 4px -1px rgba(0, 0, 0, 0.05);
   opacity: ${props => props.$isVisible ? 1 : 0};
   transform: ${props => props.$isVisible ? 'translateY(0)' : 'translateY(10px)'};
   transition: opacity 0.3s ease-out, transform 0.3s ease-out;
@@ -96,16 +96,16 @@ const TableHead = styled.div`
 `;
 
 const TableHeadCell = styled.div`
-  padding: 1rem;
-  font-size: 0.8125rem;
+  padding: 0.75rem 0.75rem;
+  font-size: 0.75rem;
   font-weight: 700;
   color: white;
   text-align: center;
   line-height: 1.3;
   
   @media (min-width: 768px) {
-    padding: 1rem 1.25rem;
-    font-size: 0.875rem;
+    padding: 0.875rem 1rem;
+    font-size: 0.8125rem;
   }
 `;
 
@@ -125,8 +125,8 @@ const TableRow = styled.div<{ $highlighted?: boolean; $isLast?: boolean }>`
 `;
 
 const TableCell = styled.div<{ $bold?: boolean; $highlight?: boolean }>`
-  padding: 0.875rem 1rem;
-  font-size: 0.875rem;
+  padding: 0.625rem 0.75rem;
+  font-size: 0.8125rem;
   color: ${(props) => props.$highlight ? '#047857' : '#374151'};
   font-weight: ${(props) => (props.$bold || props.$highlight) ? '700' : '400'};
   text-align: center;
@@ -136,7 +136,8 @@ const TableCell = styled.div<{ $bold?: boolean; $highlight?: boolean }>`
   line-height: 1.4;
   
   @media (min-width: 768px) {
-    padding: 1rem 1.25rem;
+    padding: 0.75rem 1rem;
+    font-size: 0.875rem;
   }
 `;
 
@@ -152,8 +153,8 @@ const SpecialRow = styled.div`
 `;
 
 const SpecialCell = styled.div<{ $span?: boolean }>`
-  padding: 0.875rem 1rem;
-  font-size: 0.875rem;
+  padding: 0.625rem 0.75rem;
+  font-size: 0.8125rem;
   color: #047857;
   font-weight: 600;
   text-align: center;
@@ -163,23 +164,23 @@ const SpecialCell = styled.div<{ $span?: boolean }>`
   line-height: 1.4;
   
   @media (min-width: 768px) {
-    padding: 1rem 1.25rem;
+    padding: 0.75rem 1rem;
   }
 `;
 
 const FooterNotes = styled.div`
-  max-width: 52rem;
-  margin: 0 auto 2.5rem;
+  max-width: 48rem;
+  margin: 0 auto 1.5rem;
   display: flex;
   flex-direction: column;
-  gap: 0.625rem;
+  gap: 0.5rem;
 `;
 
 const FooterNote = styled.div`
   display: flex;
   align-items: center;
-  gap: 0.625rem;
-  font-size: 0.9375rem;
+  gap: 0.5rem;
+  font-size: 0.875rem;
   color: #4b5563;
   line-height: 1.5;
 `;
