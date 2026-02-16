@@ -16,7 +16,7 @@ const pricingTiers = [
 
 const SectionWrapper = styled.section`
   padding: 3rem 0;
-  background: linear-gradient(to bottom, #f0fdf4, #ecfdf5);
+  background: #ffffff;
   
   @media (min-width: 768px) {
     padding: 4rem 0;
@@ -88,7 +88,7 @@ const TableWrapper = styled.div<{ $isVisible: boolean }>`
 const TableHead = styled.div`
   display: grid;
   grid-template-columns: 1.2fr 1fr 1.2fr 1fr;
-  background: #1e293b;
+  background: #065f46;
   
   @media (max-width: 640px) {
     grid-template-columns: 1fr 0.8fr 1fr 0.8fr;
