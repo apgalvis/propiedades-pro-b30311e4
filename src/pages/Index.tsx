@@ -4,6 +4,7 @@ import HowItWorksSection from "@/components/landing/HowItWorksSection";
 import VisibilityCallout from "@/components/landing/VisibilityCallout";
 import PremiumPlansSection from "@/components/landing/PremiumPlansSection";
 import PremiumBenefits from "@/components/landing/PremiumBenefits";
+import PricingTableSection from "@/components/landing/PricingTableSection";
 import FAQSection from "@/components/landing/FAQSection";
 import GlossarySection from "@/components/landing/GlossarySection";
 import FinalCTA from "@/components/landing/FinalCTA";
@@ -22,6 +23,7 @@ const Index = () => {
       <VisibilityCallout />
       <PremiumPlansSection cartUrl={CART_URL} whatsappUrl={WHATSAPP_URL} />
       <PremiumBenefits cartUrl={CART_URL} whatsappUrl={WHATSAPP_URL} />
+      <PricingTableSection cartUrl={CART_URL} whatsappUrl={WHATSAPP_URL} />
       <FAQSection />
       <GlossarySection />
       <FinalCTA cartUrl={CART_URL} whatsappUrl={WHATSAPP_URL} />
