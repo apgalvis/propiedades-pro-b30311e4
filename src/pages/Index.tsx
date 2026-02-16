@@ -22,8 +22,8 @@ const Index = () => {
       <HowItWorksSection />
       <VisibilityCallout />
       <PremiumPlansSection cartUrl={CART_URL} whatsappUrl={WHATSAPP_URL} />
-      <PricingTableSection cartUrl={CART_URL} whatsappUrl={WHATSAPP_URL} />
       <PremiumBenefits cartUrl={CART_URL} whatsappUrl={WHATSAPP_URL} />
+      <PricingTableSection cartUrl={CART_URL} whatsappUrl={WHATSAPP_URL} />
       <FAQSection />
       <GlossarySection />
       <FinalCTA cartUrl={CART_URL} whatsappUrl={WHATSAPP_URL} />
