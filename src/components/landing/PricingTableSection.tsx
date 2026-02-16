@@ -75,13 +75,11 @@ const BoldText = styled.span`
 const TableWrapper = styled.div<{ $isVisible: boolean }>`
   max-width: 48rem;
   margin: 0 auto 1.5rem;
-  background: rgba(255, 255, 255, 0.6);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
+  background: white;
   border-radius: 1rem;
-  border: 1px solid rgba(255, 255, 255, 0.7);
+  border: 1px solid #e2e8f0;
   overflow: hidden;
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08), 0 2px 8px rgba(0, 0, 0, 0.04);
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.12), 0 2px 6px rgba(0, 0, 0, 0.06);
   opacity: ${props => props.$isVisible ? 1 : 0};
   transform: ${props => props.$isVisible ? 'translateY(0)' : 'translateY(10px)'};
   transition: opacity 0.3s ease-out, transform 0.3s ease-out;
@@ -90,8 +88,7 @@ const TableWrapper = styled.div<{ $isVisible: boolean }>`
 const TableHead = styled.div`
   display: grid;
   grid-template-columns: 1.2fr 1fr 1.2fr 1fr;
-  background: rgba(6, 95, 70, 0.85);
-  backdrop-filter: blur(8px);
+  background: #1e293b;
   
   @media (max-width: 640px) {
     grid-template-columns: 1fr 0.8fr 1fr 0.8fr;
@@ -115,15 +112,16 @@ const TableHeadCell = styled.div`
 const TableRow = styled.div<{ $highlighted?: boolean; $isLast?: boolean }>`
   display: grid;
   grid-template-columns: 1.2fr 1fr 1.2fr 1fr;
-  border-bottom: ${props => props.$isLast ? 'none' : '1px solid rgba(229, 231, 235, 0.5)'};
-  background: ${props => props.$highlighted ? 'rgba(236, 253, 245, 0.7)' : 'transparent'};
+  border-bottom: ${props => props.$isLast ? 'none' : '1px solid #f1f5f9'};
+  background: ${props => props.$highlighted ? '#f0fdf4' : 'white'};
+  ${props => props.$highlighted ? 'border-left: 3px solid #059669;' : ''}
   
   @media (max-width: 640px) {
     grid-template-columns: 1fr 0.8fr 1fr 0.8fr;
   }
   
   &:hover {
-    background: ${props => props.$highlighted ? 'rgba(209, 250, 229, 0.6)' : 'rgba(249, 250, 251, 0.5)'};
+    background: ${props => props.$highlighted ? '#dcfce7' : '#f8fafc'};
   }
 `;
 
@@ -147,8 +145,8 @@ const TableCell = styled.div<{ $bold?: boolean; $highlight?: boolean }>`
 const SpecialRow = styled.div`
   display: grid;
   grid-template-columns: 3.2fr 1fr;
-  border-top: 1px solid rgba(229, 231, 235, 0.5);
-  background: rgba(249, 250, 251, 0.4);
+  border-top: 1px solid #e2e8f0;
+  background: #f8fafc;
   
   @media (max-width: 640px) {
     grid-template-columns: 2.8fr 0.8fr;
