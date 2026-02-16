@@ -16,7 +16,7 @@ const pricingTiers = [
 
 const SectionWrapper = styled.section`
   padding: 3rem 0;
-  background: linear-gradient(to bottom, #f9fafb, #ffffff);
+  background: linear-gradient(to bottom, #f0fdf4, #ecfdf5);
   
   @media (min-width: 768px) {
     padding: 4rem 0;
